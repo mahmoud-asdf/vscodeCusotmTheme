@@ -1,0 +1,386 @@
+:root {
+    --border-radius: 15px;
+    --spacing: 7px;
+    --spacing-color: #0f0f0f;
+    --accent-color: #16B673;
+    /* --immersive: 0; */
+}
+
+/* app font */
+.linux,
+.mac,
+.windows {
+    font-family: "JetBrains Mono" !important;
+    font-weight: 500 !important;
+}
+
+/* #region-------rounded corners and spacing-------*/
+.part.activitybar {
+    border-top-left-radius: var(--border-radius) !important;
+    border-bottom-left-radius: var(--border-radius) !important;
+    margin-left: var(--spacing) !important;
+    box-shadow: calc(var(--spacing)*3) 0 0 var(--vscode-sideBar-background),
+        calc(var(--spacing)*-3) 0 0 var(--spacing-color);
+}
+
+.part.sidebar {
+    border-radius: var(--border-radius) !important;
+    margin-right: var(--spacing) !important;
+    margin-left: var(--spacing) !important;
+    padding: 0px 5px !important;
+
+    * {
+        max-width: 100% !important;
+    }
+}
+
+.part.auxiliarybar {
+    border-radius: var(--border-radius) !important;
+    margin-right: var(--spacing) !important;
+    padding: 0px 5px !important;
+
+    * {
+        max-width: 100% !important;
+    }
+}
+
+.part.editor {
+    border-radius: var(--border-radius) !important;
+    margin-right: var(--spacing) !important;
+}
+
+.part.panel.bottom {
+    border-radius: var(--border-radius) !important;
+    margin-right: var(--spacing) !important;
+    margin-top: var(--spacing) !important;
+    padding: 0px 5px !important;
+
+    * {
+        max-width: 100% !important;
+    }
+}
+
+.part.sidebar::before,
+.part.auxiliarybar::before,
+.part.editor::before,
+.part.panel.bottom::before {
+    content: '' !important;
+    position: absolute !important;
+    top: calc(var(--spacing) * -1) !important;
+    right: calc(var(--spacing) * -1) !important;
+    bottom: calc(var(--spacing) * -1) !important;
+    left: calc(var(--spacing) * -1) !important;
+    z-index: -1 !important;
+    background-color: var(--spacing-color) !important;
+}
+
+/*-----adjustments for rounded corners and spacing-----*/
+.search-view .search-widget .replace-container {
+    display: inherit !important;
+}
+
+/* #endregion-------rounded corners and spacing-------*/
+
+/* #region-------rounded corners for lists and inputs-------*/
+.monaco-list-row,
+.monaco-list-row.selected,
+.monaco-list-row.focused,
+.monaco-list.mouse-support,
+.part.sidebar .pane-header,
+.part.auxiliarybar .pane-header,
+.monaco-menu .action-item a.focused,
+.monaco-menu .action-item a:hover,
+.monaco-button,
+.notifications-center,
+.notification-toast,
+.notification-fade-in-done,
+.monaco-inputbox,
+.scm-editor,
+.monaco-hover,
+.suggest-details,
+.suggest-widget,
+.suggest-input-container,
+.editor-widget.suggest-widget.visible,
+.suggest-details,
+.notificatin .editor-widget.parameter-hints-widget.visible {
+    border-radius: 6px !important;
+    /* margin-right: 4px !important; */
+    /* max-width: calc(100% - 4px) !important; */
+}
+
+/* #endregion-------rounded corners for lists and inputs-------*/
+
+/* #region-------active tab highlight------*/
+
+.part.editor .tabs-container {
+    padding: 7px 0px;
+
+    >* {
+        border-radius: 7px !important;
+        border: 1px solid transparent !important;
+        margin: 0px 7px !important;
+    }
+
+    .tab.selected {
+        border-radius: 7px !important;
+        background-color: rgb(from var(--accent-color) r g b / 0.22) !important;
+        border: 1px solid rgb(from var(--accent-color) r g b / 0.0) !important;
+        box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
+            rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+    }
+
+    .tab-border-top-container,
+    .tab-border-bottom-container {
+        display: none !important;
+    }
+}
+
+/* .part.activitybar ul[role=tablist] .action-item:hover .action-label::after, */
+.part.activitybar ul[role=tablist] .action-item.checked .action-label::after {
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    border-radius: 6px;
+    content: '';
+    background-color: rgb(from var(--accent-color) r g b / 0.22);
+    box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
+        rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+}
+
+.part.auxiliarybar ul[role=tablist],
+.part.sidebar ul[role=tablist] {
+    padding-top: 1px;
+
+    .action-item {
+        height: 35px !important;
+        width: 25px !important;
+
+        .action-label {
+            font-size: 20px;
+        }
+    }
+
+    /* .action-item:hover .action-label::after, */
+    .action-item.checked .action-label::after {
+        height: 80%;
+        width: 100%;
+        position: absolute;
+        border-radius: 6px;
+        content: '';
+        background-color: rgb(from var(--accent-color) r g b / 0.22);
+        box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
+            rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+        left: 0px !important;
+    }
+}
+
+.part.sidebar .pane-header.expanded,
+.part.auxiliarybar .pane-header.expanded {
+    background-color: rgb(from var(--accent-color) r g b / 0.11) !important;
+    border: 2px solid var(--vscode-sideBar-background) !important;
+    box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
+        rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+}
+
+.part.panel.bottom .action-item.checked {
+    border-radius: 7px !important;
+    height: 20px;
+    background-color: rgb(from var(--accent-color) r g b / 0.22) !important;
+    border: 1px solid rgb(from var(--accent-color) r g b / 0.0) !important;
+    box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
+        rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+
+    .active-item-indicator,
+    .integrated-terminal .terminal-tabs-entry.is-active:before {
+        display: none !important;
+    }
+}
+
+/* #endregion-------tabs------*/
+
+/* #region-------scrollbar sliders and minimap-------*/
+.scrollbar.vertical .slider {
+    width: 4px !important;
+    border-radius: 2px !important;
+    cursor: grab !important;
+
+    &:hover {
+        width: 6px !important;
+        border-radius: 3px !important;
+    }
+
+    &:active {
+        cursor: grabbing !important;
+    }
+}
+
+.scrollbar.horizontal .slider {
+    height: 4px !important;
+    border-radius: 2px !important;
+    cursor: grab !important;
+
+    &:hover {
+        height: 6px !important;
+        border-radius: 3px !important;
+    }
+
+    &:active {
+        cursor: grabbing !important;
+    }
+}
+
+.minimap-slider {
+    border-radius: 4px !important;
+    cursor: grab !important;
+
+    &:active {
+        cursor: grabbing !important;
+    }
+}
+
+/* #endregion-------scrollbar sliders-------*/
+
+/* #region-------miscellaneous tweaks-------*/
+
+/* center activity bar top */
+.part.sidebar .composite-bar-container,
+.part.auxiliarybar .composite-bar-container {
+    .composite-bar {
+        width: 100%;
+    }
+
+    .actions-container {
+        justify-content: space-evenly !important;
+    }
+}
+
+/* gutter current line highlight */
+.monaco-editor .margin-view-overlays .current-line-exact-margin {
+    background-color: rgb(from var(--accent-color) r g b / 0.11) !important;
+    box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
+        rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+    border-radius: 7px !important;
+    margin-left: 7px !important;
+    max-width: 77% !important;
+    max-height: 95% !important;
+}
+
+/* Sidebar bigger title */
+.monaco-workbench .part.sidebar>.title>.title-label h2,
+.monaco-workbench .part.auxiliarybar>.title>.title-label h2 {
+    color: var(--vscode-sideBarTitle-foreground) !important;
+    text-transform: none !important;
+    font-family: 'JetBrains Mono';
+    font-size: 15px;
+    font-weight: 800;
+}
+
+/* Command palette bigger text input*/
+.quick-input-filter .monaco-inputbox {
+    border-radius: 8px !important;
+    padding: 4px !important;
+    background-color: var(--vscode-editor-background) !important;
+    font-family: "JetBrains Mono" !important;
+    font-size: 14px !important;
+    margin-bottom: 16px !important;
+}
+
+/* Remove tips from home page. */
+.editor-group-watermark .shortcuts {
+    display: none !important;
+}
+
+/* Remove vscode icon in the titlebar */
+.part.titlebar .window-appicon {
+    display: none;
+}
+
+/* accent colored icons in the titlebar */
+.part.titlebar .action-label.codicon:hover {
+    color: var(--accent-color) !important;
+}
+
+/* colorpicker */
+.colorpicker-color-decoration {
+    border: none !important;
+    border-radius: 30% !important;
+}
+
+/* colored icons in statusbar */
+.part.statusbar {
+    .codicon-error {
+        color: #ff3377 !important;
+    }
+
+    .codicon-warning {
+        color: #cccc00 !important;
+    }
+
+    .codicon-git-branch {
+        color: #9988ff !important
+    }
+
+    .codicon-sync {
+        color: #11cc99 !important;
+    }
+
+    .codicon-bell,
+    .codicon-bell-dot {
+        color: #0e80c0 !important;
+    }
+}
+
+/* bigger file icons */
+.show-file-icons .folder-icon::before,
+.show-file-icons .rootfolder-icon::before {
+    background-size: 20px !important;
+    width: 20px !important;
+    height: 20px !important;
+}
+
+/* immersive: hide titlebar and statusbar content */
+.part.titlebar .titlebar-center,
+.part.titlebar .titlebar-right,
+.part.titlebar .menubar,
+.part.statusbar .items-container {
+    opacity: calc(1 - var(--immersive)) !important;
+    transition: all 0.25s;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+/* #endregion-------little tweaks-------*/
+
+/* #region-------animations-------*/
+
+/* settings icon animation in the activity bar */
+.codicon-settings-view-bar-icon {
+    transition: transform 250ms cubic-bezier(1, 1, 1, 1);
+
+    &.codicon-settings-view-bar-icon:hover {
+        transform: rotate(90deg);
+        background-color: transparent !important;
+    }
+}
+
+/* gutter active line number animation */
+.line-numbers.active-line-number {
+    transform: scale(1.25) translateX(-3px);
+    animation: .2s ease-out scaleSize;
+}
+
+@keyframes scaleSize {
+    0% {
+        transform: scale(.75)
+    }
+
+    100% {
+        transform: scale(1.35) translateX(-3px);
+    }
+}
+
+/* #endregion-------animations-------*/
+/* --------------------------------- */
+/* --------------------------------- */
