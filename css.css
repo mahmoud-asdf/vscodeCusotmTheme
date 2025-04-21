@@ -1,82 +1,140 @@
 :root {
     --border-radius: 15px;
-    --spacing: 7px;
-    --spacing-color: #0f0f0f;
-    --accent-color: #16B673;
-    /* --immersive: 0; */
+    --spacing: 5px;
+    --spacing-color: #000000;
+    --accent-color: #16b673;
+    --immersive: 0;
 }
 
-/* app font */
-.linux,
-.mac,
-.windows {
+.monaco-workbench {
     font-family: "JetBrains Mono" !important;
     font-weight: 500 !important;
+    background-color: var(--spacing-color) !important;
 }
 
 /* #region-------rounded corners and spacing-------*/
+
 .part.activitybar {
-    border-top-left-radius: var(--border-radius) !important;
-    border-bottom-left-radius: var(--border-radius) !important;
-    margin-left: var(--spacing) !important;
-    box-shadow: calc(var(--spacing)*3) 0 0 var(--vscode-sideBar-background),
-        calc(var(--spacing)*-3) 0 0 var(--spacing-color);
-}
+    &.bordered.left {
+        border-top-right-radius: var(--border-radius) !important;
+        border-bottom-right-radius: var(--border-radius) !important;
+        border: 0px solid transparent !important;
+        /* margin-left: calc(var(--spacing) * 2) !important; */
+    }
 
-.part.sidebar {
-    border-radius: var(--border-radius) !important;
-    margin-right: var(--spacing) !important;
-    margin-left: var(--spacing) !important;
-    padding: 0px 5px !important;
-
-    * {
-        max-width: 100% !important;
+    &.bordered.right {
+        border-top-left-radius: var(--border-radius) !important;
+        border-bottom-left-radius: var(--border-radius) !important;
+        border: 0px solid transparent !important;
+        /* margin-right: calc(var(--spacing) * 2) !important; */
     }
 }
 
+.part.sidebar,
 .part.auxiliarybar {
     border-radius: var(--border-radius) !important;
-    margin-right: var(--spacing) !important;
+    /* display: flex;
+    flex-direction: column; */
     padding: 0px 5px !important;
 
+    &.left {
+        margin-top: calc(var(--spacing) * 0) !important;
+        margin-bottom: calc(var(--spacing) * 0) !important;
+        margin-right: calc(var(--spacing) * 1) !important;
+        margin-left: calc(var(--spacing) * 2) !important;
+        width: calc(100% - var(--spacing) * 3) !important;
+        /* height: calc(100% - var(--spacing) * 0) !important; */
+    }
+
+    &.right {
+        margin-top: calc(var(--spacing) * 0) !important;
+        margin-bottom: calc(var(--spacing) * 0) !important;
+        margin-right: calc(var(--spacing) * 2) !important;
+        margin-left: calc(var(--spacing) * 1) !important;
+        width: calc(100% - var(--spacing) * 3) !important;
+        /* height: calc(100% - var(--spacing) * 0) !important; */
+    }
+
+    /* -----some adjustments----- */
     * {
         max-width: 100% !important;
+    }
+
+    .search-view .search-widget .replace-container {
+        width: calc(100% - var(--spacing) * 3 - 30px) !important;
+    }
+
+    .integrated-terminal .tabs-container {
+        width: calc(100% - var(--spacing) * 3 - 10px) !important;
     }
 }
 
 .part.editor {
+    margin-top: calc(var(--spacing) * 0) !important;
+    margin-bottom: calc(var(--spacing) * 0) !important;
+    margin-right: calc(var(--spacing) * 1) !important;
+    margin-left: calc(var(--spacing) * 1) !important;
+    width: calc(100% - var(--spacing) * 2) !important;
+    /* height: calc(100% - var(--spacing) * 0) !important; */
     border-radius: var(--border-radius) !important;
-    margin-right: var(--spacing) !important;
+
+    /* -----some adjustments----- */
+    >.content .editor-group-container>.title {
+        width: calc(100% - var(--spacing) * 2) !important;
+
+        .editor-actions {
+            position: unset !important;
+            top: 0 !important;
+        }
+    }
+
+    .scrollbar.vertical {
+        margin-right: var(--spacing);
+    }
+
 }
 
-.part.panel.bottom {
+.part.panel {
     border-radius: var(--border-radius) !important;
-    margin-right: var(--spacing) !important;
-    margin-top: var(--spacing) !important;
+    display: flex;
+    flex-direction: column;
     padding: 0px 5px !important;
 
-    * {
-        max-width: 100% !important;
+    &.bottom {
+        margin-top: calc(var(--spacing) * 2) !important;
+        margin-bottom: calc(var(--spacing) * 0) !important;
+        margin-right: calc(var(--spacing) * 1) !important;
+        margin-left: calc(var(--spacing) * 1) !important;
+        width: calc(100% - var(--spacing) * 2) !important;
+        height: calc(100% - var(--spacing) * 2) !important;
     }
-}
 
-.part.sidebar::before,
-.part.auxiliarybar::before,
-.part.editor::before,
-.part.panel.bottom::before {
-    content: '' !important;
-    position: absolute !important;
-    top: calc(var(--spacing) * -1) !important;
-    right: calc(var(--spacing) * -1) !important;
-    bottom: calc(var(--spacing) * -1) !important;
-    left: calc(var(--spacing) * -1) !important;
-    z-index: -1 !important;
-    background-color: var(--spacing-color) !important;
-}
+    &.top {
+        margin-top: calc(var(--spacing) * 0) !important;
+        margin-bottom: calc(var(--spacing) * 2) !important;
+        margin-right: calc(var(--spacing) * 1) !important;
+        margin-left: calc(var(--spacing) * 1) !important;
+        width: calc(100% - var(--spacing) * 2) !important;
+        height: calc(100% - var(--spacing) * 2) !important;
+    }
 
-/*-----adjustments for rounded corners and spacing-----*/
-.search-view .search-widget .replace-container {
-    display: inherit !important;
+    /* -----some adjustments----- */
+    .monaco-list-row {
+        max-width: 97% !important;
+    }
+
+    .integrated-terminal .tabs-container {
+        width: calc(100% - var(--spacing) * 2 - 10px) !important;
+    }
+
+    .repl:has(div.repl-tree.monaco-mouse-cursor-text.word-wrap) {
+        display: flex;
+        flex-direction: column-reverse;
+
+        .repl-input-wrapper {
+            position: absolute;
+        }
+    }
 }
 
 /* #endregion-------rounded corners and spacing-------*/
@@ -147,51 +205,53 @@
         rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
 }
 
-.part.auxiliarybar ul[role=tablist],
-.part.sidebar ul[role=tablist] {
-    padding-top: 1px;
+.part.auxiliarybar ul[role=tablist] .action-item,
+.part.sidebar ul[role=tablist] .action-item {
 
-    .action-item {
-        height: 35px !important;
-        width: 25px !important;
-
-        .action-label {
-            font-size: 20px;
-        }
-    }
-
-    /* .action-item:hover .action-label::after, */
-    .action-item.checked .action-label::after {
-        height: 80%;
-        width: 100%;
-        position: absolute;
-        border-radius: 6px;
+    /* &.action-item:hover .action-label::after, */
+    &.action-item.checked .action-label::after {
         content: '';
+        width: 110%;
+        height: 75%;
+        position: absolute;
+        left: 1px !important;
+        border-radius: 6px;
         background-color: rgb(from var(--accent-color) r g b / 0.22);
         box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
             rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
-        left: 0px !important;
+    }
+
+    .active-item-indicator {
+        display: none;
+    }
+
+    .action-label.codicon {
+        font-size: 20px;
+    }
+
+    .action-label:not(.codicon) {
+        font-size: 13px;
     }
 }
 
 .part.sidebar .pane-header.expanded,
 .part.auxiliarybar .pane-header.expanded {
     background-color: rgb(from var(--accent-color) r g b / 0.11) !important;
+    border-radius: 6px !important;
     border: 2px solid var(--vscode-sideBar-background) !important;
     box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
         rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
 }
 
-.part.panel.bottom .action-item.checked {
+.part.panel .action-item.checked {
+    height: 60%;
     border-radius: 7px !important;
-    height: 20px;
     background-color: rgb(from var(--accent-color) r g b / 0.22) !important;
     border: 1px solid rgb(from var(--accent-color) r g b / 0.0) !important;
     box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
         rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
 
-    .active-item-indicator,
-    .integrated-terminal .terminal-tabs-entry.is-active:before {
+    .active-item-indicator {
         display: none !important;
     }
 }
@@ -232,9 +292,12 @@
 .minimap-slider {
     border-radius: 4px !important;
     cursor: grab !important;
+    box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
+        rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
 
     &:active {
         cursor: grabbing !important;
+
     }
 }
 
@@ -270,7 +333,6 @@
 .monaco-workbench .part.auxiliarybar>.title>.title-label h2 {
     color: var(--vscode-sideBarTitle-foreground) !important;
     text-transform: none !important;
-    font-family: 'JetBrains Mono';
     font-size: 15px;
     font-weight: 800;
 }
@@ -280,7 +342,6 @@
     border-radius: 8px !important;
     padding: 4px !important;
     background-color: var(--vscode-editor-background) !important;
-    font-family: "JetBrains Mono" !important;
     font-size: 14px !important;
     margin-bottom: 16px !important;
 }
@@ -331,11 +392,8 @@
 }
 
 /* bigger file icons */
-.show-file-icons .folder-icon::before,
-.show-file-icons .rootfolder-icon::before {
-    background-size: 20px !important;
-    width: 20px !important;
-    height: 20px !important;
+.monaco-icon-label::before {
+    background-size: 20px;
 }
 
 /* immersive: hide titlebar and statusbar content */

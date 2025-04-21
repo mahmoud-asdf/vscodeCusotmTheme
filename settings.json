@@ -1,9 +1,11 @@
 {
     //////     basic     //////
     "window.title": " ",
-    "window.commandCenter": false,
     "window.titleBarStyle": "custom",
+    "window.commandCenter": false,
     "workbench.editor.wrapTabs": true,
+    "workbench.activityBar.location": "top",
+    "workbench.secondarySideBar.showLabels": false,
     "editor.minimap.renderCharacters": false,
     "editor.cursorSmoothCaretAnimation": "on",
     // "editor.cursorStyle": "block",
@@ -16,13 +18,13 @@
     "editor.lineHeight": 2,
     "editor.fontFamily": "JetBrains Mono",
     "editor.fontLigatures": true,
-    "editor.renderLineHighlight": "none",
+    "editor.renderLineHighlight": "gutter",
     "editor.hover.enabled": false,
     "editor.occurrencesHighlight": "off",
     "terminal.integrated.cursorBlinking": true,
     "terminal.integrated.smoothScrolling": true,
     "terminal.integrated.mouseWheelZoom": true,
-    "terminal.integrated.fontSize": 17,
+    "terminal.integrated.fontSize": 15,
     "terminal.integrated.lineHeight": 1.3,
     "breadcrumbs.enabled": false,
     "explorer.compactFolders": false,
@@ -34,17 +36,24 @@
     "workbench.productIconTheme": "fluent-icons",
     "custom-ui-style.reloadWithoutPrompting": true,
     "custom-ui-style.external.imports": [
-        "file:///C:/Users/asdf/.vscode/custom/css.css",
-        "file:///C:/Users/asdf/.vscode/custom/js.js",
+        // "file:///C:/Users/asdf/.vscode/custom/css.css",
+        // "file:///C:/Users/asdf/.vscode/custom/js.js",
     ],
     "custom-ui-style.stylesheet": {
         ":root": {
             "--border-radius": "15px;",
             "--spacing": "7px;",
             "--spacing-color": "#000000;",
-            "--accent-color": "#16B673;",
-        },
+            "--accent-color": "#16b673;",
+            "--immersive": " 0;" /* 0=no & 1=yes */
+        }
     },
+    "custom_css_hot_reload.imports": [
+        "file:///C:/Users/asdf/.vscode/custom/css.css",
+        // "file:///C:/Users/asdf/.vscode/custom/js.js",
+    ],
+    "custom_css_hot_reload.hotReloadMode": "onSave",
+    ///////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////
@@ -1115,6 +1124,7 @@
         "titleBar.inactiveBackground": "#000000",
         "titleBar.border": "#000000",
         "statusBar.background": "#000000",
+        "statusBar.focusBorder": "#000000",
         "statusBar.debuggingBackground": "#000000",
         "statusBar.noFolderBackground": "#000000",
         "statusBarItem.remoteBackground": "#000000",
@@ -1137,6 +1147,15 @@
         "tab.activeBackground": "#16B67322",
         "tab.unfocusedActiveBackground": "#16B67318",
         "panel.border": "#16B67300",
+        // "sideBar.background": "#000000",
+        // "sideBar.border": "#000000",
+        // "sideBarSectionHeader.background": "#000000", // type:background
+        // "sideBarActivityBarTop.border": "#000000", // type:background
+        // "sideBarTitle.background": "#000000", // type:background
+        // "sideBarTitle.border": "#000000", // type:background
+        // "sideBarStickyScroll.background": "#000000", // type:background
+        // "activityBarTop.background": "#000000", // type:background
+        // "activityBarTop.activeBackground": "#000000", // type:background
         ///////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////
@@ -1362,5 +1381,4 @@
             }
         ]
     },
-    "workbench.activityBar.location": "top"
 }
