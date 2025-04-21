@@ -50,7 +50,7 @@
     },
     "custom_css_hot_reload.imports": [
         "file:///C:/Users/asdf/.vscode/custom/css.css",
-        // "file:///C:/Users/asdf/.vscode/custom/js.js",
+        "file:///C:/Users/asdf/.vscode/custom/js.js",
     ],
     "custom_css_hot_reload.hotReloadMode": "onSave",
     ///////////////////////////////////////////////////////////////
