@@ -33,8 +33,8 @@
 .part.sidebar,
 .part.auxiliarybar {
     border-radius: var(--border-radius) !important;
-    /* display: flex;
-    flex-direction: column; */
+    display: flex;
+    flex-direction: column;
     padding: 0px 5px !important;
 
     &.left {
@@ -56,16 +56,18 @@
     }
 
     /* -----some adjustments----- */
+
     * {
-        max-width: 100% !important;
+        max-width: 100%;
     }
 
+    .search-view .search-widgets-container,
     .search-view .search-widget .replace-container {
-        width: calc(100% - var(--spacing) * 3 - 30px) !important;
+        width: calc(100% - var(--spacing) * 3 - 10px) !important;
     }
 
-    .integrated-terminal .tabs-container {
-        width: calc(100% - var(--spacing) * 3 - 10px) !important;
+    .monaco-button-dropdown .monaco-button-dropdown-separator {
+        display: none !important;
     }
 }
 
@@ -153,10 +155,10 @@
 .notification-toast,
 .notification-fade-in-done,
 .monaco-inputbox,
-.scm-editor,
 .monaco-hover,
 .suggest-details,
 .suggest-widget,
+.monaco-editor .find-widget,
 .suggest-input-container,
 .editor-widget.suggest-widget.visible,
 .suggest-details,
@@ -344,6 +346,13 @@
     background-color: var(--vscode-editor-background) !important;
     font-size: 14px !important;
     margin-bottom: 16px !important;
+}
+
+/* tweak editor find widget */
+.monaco-editor .find-widget {
+    top: 10px !important;
+    border-radius: 6px !important;
+    border: 1px solid var(--vscode-editorWidget-border) !important;
 }
 
 /* Remove tips from home page. */
