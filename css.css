@@ -2,7 +2,7 @@
     --border-radius: 15px;
     --spacing: 5px;
     --spacing-color: #000000;
-    --accent-color: #16b673;
+    --accent-color: #00e7e3;
     --immersive: 0;
 }
 
@@ -33,16 +33,14 @@
 .part.sidebar,
 .part.auxiliarybar {
     border-radius: var(--border-radius) !important;
-    display: flex;
-    flex-direction: column;
     padding: 0px 5px !important;
 
     &.left {
         margin-top: calc(var(--spacing) * 0) !important;
         margin-bottom: calc(var(--spacing) * 0) !important;
-        margin-right: calc(var(--spacing) * 1) !important;
+        margin-right: calc(var(--spacing) * 0) !important;
         margin-left: calc(var(--spacing) * 2) !important;
-        width: calc(100% - var(--spacing) * 3) !important;
+        width: calc(100% - var(--spacing) * 2) !important;
         /* height: calc(100% - var(--spacing) * 0) !important; */
     }
 
@@ -50,8 +48,8 @@
         margin-top: calc(var(--spacing) * 0) !important;
         margin-bottom: calc(var(--spacing) * 0) !important;
         margin-right: calc(var(--spacing) * 2) !important;
-        margin-left: calc(var(--spacing) * 1) !important;
-        width: calc(100% - var(--spacing) * 3) !important;
+        margin-left: calc(var(--spacing) * 0) !important;
+        width: calc(100% - var(--spacing) * 2) !important;
         /* height: calc(100% - var(--spacing) * 0) !important; */
     }
 
@@ -61,72 +59,91 @@
         max-width: 100%;
     }
 
-    .search-view .search-widgets-container,
     .search-view .search-widget .replace-container {
-        width: calc(100% - var(--spacing) * 3 - 10px) !important;
+        width: calc(100% - var(--spacing) * 2 - 20px) !important;
     }
 
-    .monaco-button-dropdown .monaco-button-dropdown-separator {
-        display: none !important;
+    .integrated-terminal .tabs-container {
+        width: calc(100% - var(--spacing) * 2) !important;
+
+        .monaco-list-row {
+            max-width: 95% !important;
+        }
     }
 }
 
 .part.editor {
     margin-top: calc(var(--spacing) * 0) !important;
     margin-bottom: calc(var(--spacing) * 0) !important;
-    margin-right: calc(var(--spacing) * 1) !important;
-    margin-left: calc(var(--spacing) * 1) !important;
-    width: calc(100% - var(--spacing) * 2) !important;
+    margin-right: calc(var(--spacing) * 2) !important;
+    margin-left: calc(var(--spacing) * 2) !important;
+    width: calc(100% - var(--spacing) * 4) !important;
     /* height: calc(100% - var(--spacing) * 0) !important; */
     border-radius: var(--border-radius) !important;
 
-    /* -----some adjustments----- */
-    >.content .editor-group-container>.title {
-        width: calc(100% - var(--spacing) * 2) !important;
+    /* -----some adjustments-----*/
+    >.content {
+        width: calc(100%) !important;
 
         .editor-actions {
-            position: unset !important;
-            top: 0 !important;
+            position: static !important;
+            margin-top: auto !important;
+            margin-bottom: auto !important;
+        }
+
+        .split-view-view.visible:last-of-type {
+            .editor-group-container>.title {
+                width: calc(100% - var(--spacing) * 4) !important;
+            }
+
+            .sticky-widget {
+                width: calc(100% - var(--spacing) * 4 - 14px) !important;
+            }
+
+            .decorationsOverviewRuler,
+            .scrollbar.vertical {
+                margin-right: calc(var(--spacing) * 4) !important;
+            }
+
+            /* .split-view-view.visible:last-of-type .monaco-editor .minimap { */
+            /* made with js as the 7.15% isn't accurate; */
+            /* left: calc(100% - var(--spacing) * 4 - 7.15%) !important; */
+            /* } */
         }
     }
-
-    .scrollbar.vertical {
-        margin-right: var(--spacing);
-    }
-
 }
 
 .part.panel {
     border-radius: var(--border-radius) !important;
     display: flex;
     flex-direction: column;
-    padding: 0px 5px !important;
 
     &.bottom {
         margin-top: calc(var(--spacing) * 2) !important;
         margin-bottom: calc(var(--spacing) * 0) !important;
-        margin-right: calc(var(--spacing) * 1) !important;
-        margin-left: calc(var(--spacing) * 1) !important;
-        width: calc(100% - var(--spacing) * 2) !important;
+        margin-right: calc(var(--spacing) * 2) !important;
+        margin-left: calc(var(--spacing) * 2) !important;
+        width: calc(100% - var(--spacing) * 4) !important;
         height: calc(100% - var(--spacing) * 2) !important;
     }
 
     &.top {
         margin-top: calc(var(--spacing) * 0) !important;
         margin-bottom: calc(var(--spacing) * 2) !important;
-        margin-right: calc(var(--spacing) * 1) !important;
-        margin-left: calc(var(--spacing) * 1) !important;
-        width: calc(100% - var(--spacing) * 2) !important;
+        margin-right: calc(var(--spacing) * 2) !important;
+        margin-left: calc(var(--spacing) * 2) !important;
+        width: calc(100% - var(--spacing) * 4) !important;
         height: calc(100% - var(--spacing) * 2) !important;
     }
 
     /* -----some adjustments----- */
     .monaco-list-row {
         max-width: 97% !important;
+        margin-left: .8% !important;
     }
 
     .integrated-terminal .tabs-container {
-        width: calc(100% - var(--spacing) * 2 - 10px) !important;
+        width: calc(100% - var(--spacing) * 4) !important;
     }
 
     .repl:has(div.repl-tree.monaco-mouse-cursor-text.word-wrap) {
@@ -142,18 +159,9 @@
 /* #endregion-------rounded corners and spacing-------*/
 
 /* #region-------rounded corners for lists and inputs-------*/
-.monaco-list-row,
-.monaco-list-row.selected,
-.monaco-list-row.focused,
-.monaco-list.mouse-support,
-.part.sidebar .pane-header,
-.part.auxiliarybar .pane-header,
-.monaco-menu .action-item a.focused,
-.monaco-menu .action-item a:hover,
+.scm-editor,
 .monaco-button,
-.notifications-center,
-.notification-toast,
-.notification-fade-in-done,
+.monaco-select-box,
 .monaco-inputbox,
 .monaco-hover,
 .suggest-details,
@@ -162,10 +170,27 @@
 .suggest-input-container,
 .editor-widget.suggest-widget.visible,
 .suggest-details,
-.notificatin .editor-widget.parameter-hints-widget.visible {
+.chat-input-container,
+.notification-fade-in-done,
+.notification-toast,
+.notification-toast>.notifications-list-container,
+.notification-toast>.notifications-list-container>.monaco-list,
+.notifications-center,
+.monaco-menu .action-item a.focused,
+.monaco-menu .action-item a:hover,
+.part.sidebar .pane-header,
+.part.auxiliarybar .pane-header,
+.monaco-list.mouse-support,
+.monaco-list-row.focused,
+.monaco-list-row.selected,
+.monaco-list-row {
     border-radius: 6px !important;
     /* margin-right: 4px !important; */
     /* max-width: calc(100% - 4px) !important; */
+}
+
+.monaco-button-dropdown .monaco-button-dropdown-separator {
+    display: none !important;
 }
 
 /* #endregion-------rounded corners for lists and inputs-------*/
@@ -236,17 +261,19 @@
     }
 }
 
+.monaco-list-row:hover,
+.monaco-list-row.focused,
+.monaco-list-row.selected,
 .part.sidebar .pane-header.expanded,
 .part.auxiliarybar .pane-header.expanded {
     background-color: rgb(from var(--accent-color) r g b / 0.11) !important;
     border-radius: 6px !important;
-    border: 2px solid var(--vscode-sideBar-background) !important;
     box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
         rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
 }
 
 .part.panel .action-item.checked {
-    height: 60%;
+    height: 70%;
     border-radius: 7px !important;
     background-color: rgb(from var(--accent-color) r g b / 0.22) !important;
     border: 1px solid rgb(from var(--accent-color) r g b / 0.0) !important;
@@ -258,17 +285,33 @@
     }
 }
 
+.extension-editor>.body>.navbar>.monaco-action-bar>.actions-container>.action-item>.action-label.checked::after {
+    content: '';
+    width: 95%;
+    height: 75%;
+    position: absolute;
+    top: 3px !important;
+    left: 2px !important;
+    border-radius: 6px;
+    background-color: rgb(from var(--accent-color) r g b / 0.22);
+    box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
+        rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+
+}
+
 /* #endregion-------tabs------*/
 
 /* #region-------scrollbar sliders and minimap-------*/
 .scrollbar.vertical .slider {
     width: 4px !important;
+    left: 5px !important;
     border-radius: 2px !important;
     cursor: grab !important;
 
     &:hover {
-        width: 6px !important;
-        border-radius: 3px !important;
+        width: 8px !important;
+        left: 3px !important;
+        border-radius: 4px !important;
     }
 
     &:active {
@@ -282,8 +325,8 @@
     cursor: grab !important;
 
     &:hover {
-        height: 6px !important;
-        border-radius: 3px !important;
+        height: 8px !important;
+        border-radius: 2px !important;
     }
 
     &:active {
@@ -320,14 +363,15 @@
 }
 
 /* gutter current line highlight */
+.monaco-editor .margin-view-overlays .current-line-margin,
 .monaco-editor .margin-view-overlays .current-line-exact-margin {
     background-color: rgb(from var(--accent-color) r g b / 0.11) !important;
     box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
         rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
     border-radius: 7px !important;
-    margin-left: 7px !important;
-    max-width: 77% !important;
     max-height: 95% !important;
+    max-width: 77% !important;
+    margin-left: 7% !important;
 }
 
 /* Sidebar bigger title */
@@ -349,7 +393,7 @@
 }
 
 /* tweak editor find widget */
-.monaco-editor .find-widget {
+.monaco-editor .find-widget.visible {
     top: 10px !important;
     border-radius: 6px !important;
     border: 1px solid var(--vscode-editorWidget-border) !important;
@@ -414,7 +458,7 @@
     transition: all 0.25s;
 
     &:hover {
-        opacity: 1;
+        opacity: 1 !important;
     }
 }
 
@@ -433,7 +477,8 @@
 }
 
 /* gutter active line number animation */
-.line-numbers.active-line-number {
+.line-numbers.active-line-number,
+.current-line.current-line-margin .line-numbers {
     transform: scale(1.25) translateX(-3px);
     animation: .2s ease-out scaleSize;
 }
@@ -449,5 +494,15 @@
 }
 
 /* #endregion-------animations-------*/
+
+/* #region-------small fixes-------*/
+/* #endregion-------small fixes-------*/
+
+/* #region-------conditions-------*/
+/* #endregion-------conditions-------*/
+
+/* --------------------------------- */
+/* --------------------------------- */
+/* --------------------------------- */
 /* --------------------------------- */
 /* --------------------------------- */

@@ -5,6 +5,8 @@
 
 ![screenshot3](<assets/Screenshot 2025-04-22 004256.png>)
 
+![alt text](<assets/Screenshot 2025-04-22 011832.png>)
+
 ## Installation & Usage
 just copy pase the settins.json file
 install any extension to inject the custom css and js like

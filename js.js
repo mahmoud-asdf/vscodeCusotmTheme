@@ -1,4 +1,4 @@
-// Blur behind the command palette - Improved Version
+// Blur behind the command palette
 document.addEventListener('DOMContentLoaded', function () {
 
     // --- Configuration ---
@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const BLUR_ELEMENT_ID = "command-blur";              // ID for the blur overlay element
     const TARGET_CONTAINER_SELECTOR = ".monaco-workbench"; // CSS selector for the container to append the blur to
     const POLLING_INTERVAL_MS = 500;                     // How often to check for the command palette if not found initially
-    const SHOW_DELAY_MS = 50;                            // Small delay before showing blur on Cmd+P to allow UI rendering
-    const FADE_DURATION_MS = 300;                        // Duration for fade-in/out animations (should match CSS if used)
+    const SHOW_DELAY_MS = 0;                            // Small delay before showing blur on Cmd+P to allow UI rendering
+    const FADE_DURATION_MS = 150;                        // Duration for fade-in/out animations (should match CSS if used)
 
     // --- State ---
     let commandDialog = null; // Reference to the command palette element
@@ -15,9 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- Functions ---
 
-    /**
-     * Adds the blur overlay element to the DOM with a fade-in effect.
-     */
+    // Adds the blur overlay element to the DOM with a fade-in effect.
     function addBlur() {
         const targetDiv = document.querySelector(TARGET_CONTAINER_SELECTOR);
         if (!targetDiv) {
@@ -58,9 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    /**
-     * Removes the blur overlay element from the DOM with a fade-out effect.
-     */
+    // Removes the blur overlay element from the DOM with a fade-out effect.
     function handleEscape() {
         const element = document.getElementById(BLUR_ELEMENT_ID);
         if (element) {
@@ -73,9 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    /**
-     * Sets up the MutationObserver to watch for command palette visibility changes.
-     */
+    // Sets up the MutationObserver to watch for command palette visibility changes.
     function setupObserver() {
         if (!commandDialog || observer) return; // Already observing or no element
 
@@ -145,4 +139,101 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }, true); // Use capture phase 'true'
 
+
+
+
+
 });
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+
+
+
+// Observer to track minimap width and update CSS variable
+(function () {
+    // Function to create and update the CSS variable
+    function updateMinimapWidthVariable() {
+        const minimapElement = document.querySelector('.part.editor .content .split-view-view.visible:last-of-type .monaco-editor .minimap');
+        if (minimapElement) {
+            // Get the computed width of the minimap
+            const minimapWidth = window.getComputedStyle(minimapElement).width;
+
+            // Create or update the CSS variable at the document root level
+            document.documentElement.style.setProperty('--minimap-width', minimapWidth);
+            console.log('Minimap width updated to:', minimapWidth);
+
+            // Update the CSS rule for minimap positioning
+            updateMinimapCSS(minimapWidth);
+        } else {
+            console.log('Minimap element not found. Will retry when DOM changes.');
+        }
+    }
+
+    // Function to add or update the minimap positioning CSS
+    function updateMinimapCSS(minimapWidth) {
+        // Check if our custom style element already exists
+        let styleElement = document.getElementById('minimap-custom-style');
+
+        // If not, create it
+        if (!styleElement) {
+            styleElement = document.createElement('style');
+            styleElement.id = 'minimap-custom-style';
+            document.head.appendChild(styleElement);
+        }
+
+        // Update the CSS content
+        styleElement.textContent = `
+        .part.editor .content .split-view-view.visible:last-of-type .monaco-editor .minimap {
+          left: calc(100% - var(--spacing) * 4 - ${minimapWidth} - 14px) !important;
+        }
+      `;
+    }
+
+    // Initial setup - update variable immediately if minimap exists
+    updateMinimapWidthVariable();
+
+    // Set up a resize observer to track editor width changes
+    const resizeObserver = new ResizeObserver(entries => {
+        for (let entry of entries) {
+            // When editor area changes size, update the minimap width variable
+            updateMinimapWidthVariable();
+        }
+    });
+
+    // Function to find and observe editor element
+    function observeEditor() {
+        // Target the editor container - adjust selector based on VSCode's structure
+        const editorElement = document.querySelector('.editor-container') ||
+            document.querySelector('.monaco-editor') ||
+            document.querySelector('.editor');
+
+        if (editorElement) {
+            resizeObserver.observe(editorElement);
+            console.log('Editor element found and being observed for resize events');
+        } else {
+            console.log('Editor element not found. Will try again shortly.');
+            setTimeout(observeEditor, 1000); // Retry after 1 second
+        }
+    }
+
+    // Start observing
+    observeEditor();
+
+    // Also set up a mutation observer to handle dynamic DOM changes
+    const mutationObserver = new MutationObserver((mutations) => {
+        for (let mutation of mutations) {
+            if (mutation.type === 'childList' || mutation.type === 'subtree') {
+                updateMinimapWidthVariable();
+            }
+        }
+    });
+
+    // Start observing the document body for DOM changes
+    mutationObserver.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+
+    console.log('Minimap width tracking and positioning initialized');
+})();
