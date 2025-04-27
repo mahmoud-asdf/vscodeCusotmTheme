@@ -13,20 +13,17 @@
 }
 
 /* #region-------rounded corners and spacing-------*/
-
 .part.activitybar {
-    &.bordered.left {
-        border-top-right-radius: var(--border-radius) !important;
-        border-bottom-right-radius: var(--border-radius) !important;
+    &.left {
+        border-top-right-radius: var(--border-radius);
+        border-bottom-right-radius: var(--border-radius);
         border: 0px solid transparent !important;
-        /* margin-left: calc(var(--spacing) * 2) !important; */
     }
 
-    &.bordered.right {
-        border-top-left-radius: var(--border-radius) !important;
-        border-bottom-left-radius: var(--border-radius) !important;
+    &.right {
+        border-top-left-radius: var(--border-radius);
+        border-bottom-left-radius: var(--border-radius);
         border: 0px solid transparent !important;
-        /* margin-right: calc(var(--spacing) * 2) !important; */
     }
 }
 
@@ -41,7 +38,7 @@
         margin-right: calc(var(--spacing) * 0) !important;
         margin-left: calc(var(--spacing) * 2) !important;
         width: calc(100% - var(--spacing) * 2) !important;
-        /* height: calc(100% - var(--spacing) * 0) !important; */
+        height: calc(100% - var(--spacing) * 0) !important;
     }
 
     &.right {
@@ -50,7 +47,7 @@
         margin-right: calc(var(--spacing) * 2) !important;
         margin-left: calc(var(--spacing) * 0) !important;
         width: calc(100% - var(--spacing) * 2) !important;
-        /* height: calc(100% - var(--spacing) * 0) !important; */
+        height: calc(100% - var(--spacing) * 0) !important;
     }
 
     /* -----some adjustments----- */
@@ -92,23 +89,54 @@
         }
 
         .split-view-view.visible:last-of-type {
-            .editor-group-container>.title {
+
+            .editor-group-container {
                 width: calc(100% - var(--spacing) * 4) !important;
+
+                .sticky-widget {
+                    width: calc(100% - var(--spacing) * 4 - 14px) !important;
+                }
+
+                .decorationsOverviewRuler,
+                .scrollbar.vertical {
+                    margin-right: calc(var(--spacing) * 4) !important;
+                }
+
+                /* .split-view-view.visible:last-of-type .monaco-editor .minimap { */
+                /* made with js as the 7.15% isn't accurate; */
+                /* left: calc(100% - var(--spacing) * 4 - 7.15%) !important; */
+                /* } */
             }
 
-            .sticky-widget {
-                width: calc(100% - var(--spacing) * 4 - 14px) !important;
+            .monaco-diff-editor {
+
+                .editor.original .decorationsOverviewRuler,
+                .editor.original .scrollbar.vertical {
+                    margin-right: calc(var(--spacing) * 0) !important;
+                }
+
+                .editor.original .sticky-widget {
+                    width: calc(100% - var(--spacing) * 0 - 14px) !important;
+                }
+
+                .diffOverview {
+                    left: calc(100% - var(--spacing) * 4 - 10px) !important;
+                    background-color: var(--vscode-editor-background) !important;
+                }
             }
 
-            .decorationsOverviewRuler,
-            .scrollbar.vertical {
-                margin-right: calc(var(--spacing) * 4) !important;
-            }
+            .zone-widget {
+                width: calc(100% - var(--spacing) * 4 - 15px) !important;
 
-            /* .split-view-view.visible:last-of-type .monaco-editor .minimap { */
-            /* made with js as the 7.15% isn't accurate; */
-            /* left: calc(100% - var(--spacing) * 4 - 7.15%) !important; */
-            /* } */
+                .decorationsOverviewRuler {
+                    margin-right: calc(var(--spacing) * 0) !important;
+                }
+
+                .ref-tree.inline {
+                    width: calc(100% - var(--spacing) * 4 - 10px) !important;
+                    padding: 0px 5px !important;
+                }
+            }
         }
     }
 }
@@ -125,6 +153,11 @@
         margin-left: calc(var(--spacing) * 2) !important;
         width: calc(100% - var(--spacing) * 4) !important;
         height: calc(100% - var(--spacing) * 2) !important;
+
+        &:has(.composite.title.has-composite-bar>.global-actions>.monaco-toolbar>.monaco-action-bar>.actions-container>.action-item.menu-entry>.action-label.checked.codicon-panel-restore) {
+            margin-top: calc(var(--spacing) * 0) !important;
+            height: calc(100% - var(--spacing) * 0) !important;
+        }
     }
 
     &.top {
@@ -134,6 +167,47 @@
         margin-left: calc(var(--spacing) * 2) !important;
         width: calc(100% - var(--spacing) * 4) !important;
         height: calc(100% - var(--spacing) * 2) !important;
+
+        &:has(.composite.title.has-composite-bar>.global-actions>.monaco-toolbar>.monaco-action-bar>.actions-container>.action-item.menu-entry>.action-label.checked.codicon-panel-restore) {
+            margin-bottom: calc(var(--spacing) * 0) !important;
+            height: calc(100% - var(--spacing) * 0) !important;
+        }
+    }
+
+    &.left {
+        margin-left: calc(var(--spacing) * 2) !important;
+        width: calc(100% - var(--spacing) * 2) !important;
+
+        &:has(.composite.title.has-composite-bar>.global-actions>.monaco-toolbar>.monaco-action-bar>.actions-container>.action-item.menu-entry>.action-label.checked.codicon-panel-restore) {
+            margin-right: calc(var(--spacing) * 2) !important;
+            width: calc(100% - var(--spacing) * 4) !important;
+
+            .integrated-terminal .tabs-container {
+                width: calc(100% - var(--spacing) * 4) !important;
+            }
+        }
+
+        .integrated-terminal .tabs-container {
+            width: calc(100% - var(--spacing) * 2) !important;
+        }
+    }
+
+    &.right {
+        margin-right: calc(var(--spacing) * 2) !important;
+        width: calc(100% - var(--spacing) * 2) !important;
+
+        &:has(.composite.title.has-composite-bar>.global-actions>.monaco-toolbar>.monaco-action-bar>.actions-container>.action-item.menu-entry>.action-label.checked.codicon-panel-restore) {
+            margin-left: calc(var(--spacing) * 2) !important;
+            width: calc(100% - var(--spacing) * 4) !important;
+
+            .integrated-terminal .tabs-container {
+                width: calc(100% - var(--spacing) * 4) !important;
+            }
+        }
+
+        .integrated-terminal .tabs-container {
+            width: calc(100% - var(--spacing) * 2) !important;
+        }
     }
 
     /* -----some adjustments----- */
@@ -495,11 +569,113 @@
 
 /* #endregion-------animations-------*/
 
-/* #region-------small fixes-------*/
-/* #endregion-------small fixes-------*/
-
 /* #region-------conditions-------*/
+/* activitybar states while have panel and sidebar in different positions */
+.monaco-workbench:has(.part.activitybar.left .composite-bar) {
+    &:has(.part.sidebar:not(.empty)) {
+        &:not(:has(div.monaco-grid-view>div>div>div.monaco-scrollable-element>div.split-view-container>div:nth-child(3)>div>div>div.monaco-scrollable-element>div.split-view-container>div:nth-child(2)>div>div>div.monaco-scrollable-element>div.split-view-container .part.panel:not(.empty))) {
+            .part.activitybar {
+                border-radius: var(--border-radius) 0px 0px var(--border-radius) !important;
+                margin-left: calc(var(--spacing) * 2);
+            }
+
+            .part.sidebar {
+                border-top-left-radius: 0 !important;
+                border-bottom-left-radius: 0 !important;
+            }
+        }
+    }
+
+    &:has(.part.sidebar.empty) {
+
+        &:has(.part.panel.right),
+        &:has(.part.panel.left.empty),
+        &:has(.part.panel.top.empty),
+        &:has(.part.panel.bottom.empty) {
+
+            .part.activitybar {
+                border-radius: var(--border-radius) 0px 0px var(--border-radius) !important;
+                margin-left: calc(var(--spacing) * 2);
+            }
+
+            .part.editor {
+                border-top-left-radius: 0 !important;
+                border-bottom-left-radius: 0 !important;
+            }
+        }
+
+        &:has(.part.panel.left:not(.empty)),
+        &:has(.part.panel:not(.empty)):has(.action-label.checked.codicon-panel-restore) {
+            .part.activitybar {
+                border-radius: var(--border-radius) 0px 0px var(--border-radius) !important;
+                margin-left: calc(var(--spacing) * 2);
+            }
+
+            .part.panel {
+                border-top-left-radius: 0 !important;
+                border-bottom-left-radius: 0 !important;
+            }
+        }
+    }
+}
+
+.monaco-workbench:has(.part.activitybar.right .composite-bar) {
+    .part.activitybar.bordered.right {
+        border-top-left-radius: var(--border-radius);
+        border-bottom-left-radius: var(--border-radius);
+        border: 0px solid transparent !important;
+    }
+
+    &:has(.part.sidebar:not(.empty)) {
+        &:not(:has(div.monaco-grid-view>div>div>div.monaco-scrollable-element>div.split-view-container>div:nth-child(3)>div>div>div.monaco-scrollable-element>div.split-view-container>div:nth-child(1)>div>div .part.panel:not(.empty))) {
+            .part.activitybar {
+                border-radius: 0px var(--border-radius) var(--border-radius) 0px !important;
+                margin-left: calc(var(--spacing) * 2 * -1);
+            }
+
+            .part.sidebar {
+                border-top-right-radius: 0 !important;
+                border-bottom-right-radius: 0 !important;
+            }
+        }
+    }
+
+    &:has(.part.sidebar.empty) {
+
+        &:has(.part.panel.right.empty),
+        &:has(.part.panel.left),
+        &:has(.part.panel.top.empty),
+        &:has(.part.panel.bottom.empty) {
+
+            .part.activitybar {
+                border-radius: 0px var(--border-radius) var(--border-radius) 0px !important;
+                margin-left: calc(var(--spacing) * 2 * -1);
+            }
+
+            .part.editor {
+                border-top-right-radius: 0 !important;
+                border-bottom-right-radius: 0 !important;
+            }
+        }
+
+        &:has(.part.panel.right:not(.empty)),
+        &:has(.part.panel:not(.empty)):has(.action-label.checked.codicon-panel-restore) {
+            .part.activitybar {
+                border-radius: 0px var(--border-radius) var(--border-radius) 0px !important;
+                margin-left: calc(var(--spacing) * 2 * -1);
+            }
+
+            .part.panel {
+                border-top-right-radius: 0 !important;
+                border-bottom-right-radius: 0 !important;
+            }
+        }
+    }
+}
+
 /* #endregion-------conditions-------*/
+
+
 
 /* --------------------------------- */
 /* --------------------------------- */

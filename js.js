@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Update the CSS content
         styleElement.textContent = `
         .part.editor .content .split-view-view.visible:last-of-type .monaco-editor .minimap {
-          left: calc(100% - var(--spacing) * 4 - ${minimapWidth} - 14px) !important;
+          left: calc(100% - var(--spacing) * 4 - ${minimapWidth} - 13px) !important;
         }
       `;
     }
