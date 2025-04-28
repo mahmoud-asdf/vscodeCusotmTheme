@@ -3,8 +3,8 @@
     "window.title": " ",
     "window.titleBarStyle": "custom",
     "window.commandCenter": false,
-    "workbench.activityBar.location": "top",
     "workbench.editor.wrapTabs": true,
+    "workbench.activityBar.location": "top",
     "editor.minimap.renderCharacters": false,
     "editor.cursorSmoothCaretAnimation": "on",
     // "editor.cursorStyle": "block",
@@ -20,6 +20,7 @@
     "editor.renderLineHighlight": "gutter",
     "editor.hover.enabled": false,
     "editor.occurrencesHighlight": "off",
+    "editor.scrollBeyondLastColumn": 40,
     "terminal.integrated.cursorBlinking": true,
     "terminal.integrated.smoothScrolling": true,
     "terminal.integrated.mouseWheelZoom": true,
@@ -34,6 +35,7 @@
     "workbench.iconTheme": "symbols",
     "workbench.productIconTheme": "fluent-icons",
     // "custom-ui-style.reloadWithoutPrompting": true,
+    // "custom-ui-style.external.loadStrategy": "cache",
     // "custom-ui-style.external.imports": [
     //     // "file:///C:/Users/asdf/.vscode/custom/css.css",
     //     // "file:///C:/Users/asdf/.vscode/custom/js.js",
@@ -41,10 +43,12 @@
     // "custom-ui-style.stylesheet": {
     //     ":root": {
     //         "--border-radius": "15px;",
-    //         "--spacing": "7px;",
-    //         "--spacing-color": "#000000;",
+    //         "--spacing": "5px;",
+    //         "--spacing-color": "#000001;",
     //         "--accent-color": "#00e7e3;",
-    //         "--immersive": " 0;" /* 0=no & 1=yes */
+    //         "--immersive": " 0;", /* 0=no & 1=yes */
+    //         "--filetree-icon-scale": "100%;"
+    //         "--filetree-label-scale": "100%;"
     //     }
     // },
     "custom_css_hot_reload.imports": [
@@ -1119,14 +1123,14 @@
         /////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////
-        "titleBar.activeBackground": "#000000",
-        "titleBar.inactiveBackground": "#000000",
-        "titleBar.border": "#000000",
-        "statusBar.background": "#000000",
-        "statusBar.focusBorder": "#000000",
-        "statusBar.debuggingBackground": "#000000",
-        "statusBar.noFolderBackground": "#000000",
-        "statusBarItem.remoteBackground": "#000000",
+        "titleBar.activeBackground": "#000001",
+        "titleBar.inactiveBackground": "#000001",
+        "titleBar.border": "#000001",
+        "statusBar.background": "#000001",
+        "statusBar.focusBorder": "#000001",
+        "statusBar.debuggingBackground": "#000001",
+        "statusBar.noFolderBackground": "#000001",
+        "statusBarItem.remoteBackground": "#000001",
         "activityBar.activeBorder": "#00e7e300",
         "activityBarTop.activeBorder": "#00e7e300",
         "list.activeSelectionBackground": "#00e7e322",
@@ -1146,19 +1150,26 @@
         "tab.activeBackground": "#00e7e322",
         "tab.unfocusedActiveBackground": "#00e7e318",
         "panel.border": "#00e7e300",
-        // "sideBar.background": "#000000",
-        // "sideBar.border": "#000000",
-        // "sideBarSectionHeader.background": "#000000", // type:background
-        // "sideBarActivityBarTop.border": "#000000", // type:background
-        // "sideBarTitle.background": "#000000", // type:background
-        // "sideBarTitle.border": "#000000", // type:background
-        // "sideBarStickyScroll.background": "#000000", // type:background
-        // "activityBarTop.background": "#000000", // type:background
-        // "activityBarTop.activeBackground": "#000000", // type:background
+        // "activityBar.background": "#000001",
+        // "activityBar.border": "#000001",
+        // "activityBar.activeBackground": "#000001",
+        // "activityBarTop.background": "#000001",
+        // "activityBarTop.activeBackground": "#000001",
+        // "sideBar.background": "#000001",
+        // "sideBar.border": "#000001",
+        // "sideBarSectionHeader.background": "#000001",
+        // "sideBarActivityBarTop.border": "#000001",
+        // "sideBarTitle.background": "#000001",
+        // "sideBarTitle.border": "#000001",
+        // "sideBarStickyScroll.background": "#000001",
+        // "activityBarTop.background": "#000001",
+        // "activityBarTop.activeBackground": "#000001",
         ///////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////
     },
+    // "editor.minimap.enabled": false,
+    // "zenMode.hideStatusBar": false,
     ///////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////
@@ -1379,5 +1390,6 @@
                 }
             }
         ]
-    }
+    },
+    "editor.largeFileOptimizations": false,
 }

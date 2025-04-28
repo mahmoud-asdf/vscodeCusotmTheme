@@ -1,9 +1,12 @@
 :root {
     --border-radius: 15px;
     --spacing: 5px;
-    --spacing-color: #000000;
+    --spacing-color: #000001;
     --accent-color: #00e7e3;
     --immersive: 0;
+    /* 0=no & 1=yes */
+    --filetree-icon-scale: 100%;
+    --filetree-label-scale: 100%;
 }
 
 .monaco-workbench {
@@ -98,7 +101,7 @@
                 }
 
                 .decorationsOverviewRuler,
-                .scrollbar.vertical {
+                .editor-scrollable .scrollbar.vertical {
                     margin-right: calc(var(--spacing) * 4) !important;
                 }
 
@@ -518,9 +521,19 @@
     }
 }
 
-/* bigger file icons */
-.monaco-icon-label::before {
-    background-size: 20px;
+/* bigger file icons and labels*/
+.pane-body .explorer-folders-view.file-icon-themable-tree .monaco-list-rows .monaco-tl-row {
+
+    .monaco-tl-twistie.collapsible.codicon,
+    .monaco-icon-label::before {
+        background-size: calc(0.75 * var(--filetree-icon-scale)) !important;
+        font-size: calc(1.25 * var(--filetree-icon-scale)) !important;
+    }
+
+    .monaco-tl-contents .label-name {
+        font-size: calc(1 * var(--filetree-label-scale)) !important;
+        padding-left: calc(.01 * var(--filetree-label-scale)) !important;
+    }
 }
 
 /* immersive: hide titlebar and statusbar content */
@@ -675,6 +688,135 @@
 
 /* #endregion-------conditions-------*/
 
+/* #region-------small fixes and optimizations-------*/
+
+/* #region-------windsurf-------*/
+
+/* chat corners in the auxiliarybar */
+iframe#windsurf\.cascadePanel {
+    border-radius: var(--border-radius) !important;
+}
+
+/* widsurf settings page */
+#workbench\.parts\.editor .content .monaco-scrollable-element .split-view-container .editor-container .windsurf-settings-editor {
+    padding-left: calc(var(--spacing) * 4) !important;
+
+    .windsurf-settings-sidebar .windsurf-settings-nav-item {
+        &.selected {
+            border-radius: 7px !important;
+            background-color: rgb(from var(--accent-color) r g b / 0.22) !important;
+            border: 1px solid rgb(from var(--accent-color) r g b / 0.0) !important;
+            color: var(--accent-color) !important;
+            box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
+                rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+        }
+
+        &:hover:not(.selected) {
+            background: none !important;
+            color: var(--accent-color) !important;
+        }
+    }
+}
+
+/* panel tabs in widsurf */
+.monaco-workbench .pane-composite-part>.title>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item:hover .active-item-indicator:before {
+    display: none !important;
+}
+
+/* search icon in titlebar */
+#workbench\.parts\.titlebar>div>div.titlebar-center>div.search-container {
+    display: none !important;
+}
+
+/* #endregion-------windsurf-------*/
+
+/* #region-------cursor-------*/
+
+/* chat corners in the auxiliarybar */
+.part.auxiliarybar.basepanel.pane-composite-part .content .composite.auxiliarybar .monaco-pane-view .pane-body .composer-bar,
+#workbench\.parts\.auxiliarybar>div.composite.title.has-composite-bar {
+    border-radius: var(--border-radius) !important;
+}
+
+/* chat name fix */
+#workbench\.parts\.auxiliarybar>div.composite.title.has-composite-bar>div.composite-bar-container>div>div>ul>li {
+    border-radius: 6px;
+    background-color: rgb(from var(--accent-color) r g b / 0.22);
+    box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
+        rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+
+    .action-label::after {
+        display: none !important;
+    }
+}
+
+/* cursor settings page */
+#workbench\.parts\.editor .content .monaco-scrollable-element .split-view-container .editor-container .editor-instance.aichat-pane .aichat-container {
+    margin-top: -14px !important;
+
+    .settings-menu-item:not([style*="background-color: transparent"]) {
+        border-radius: 7px !important;
+        background-color: rgb(from var(--accent-color) r g b / 0.22) !important;
+        border: 1px solid rgb(from var(--accent-color) r g b / 0.0) !important;
+        color: var(--accent-color) !important;
+        box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
+            rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+    }
+
+    :hover {
+        color: var(--accent-color) !important;
+        background: transparent !important;
+    }
+}
+
+/* the menu that cursor added in the activitybar */
+#workbench\.parts\.sidebar>div>div>div:nth-child(1)>div>div:nth-child(2) {
+    border-radius: 7px !important;
+    border-bottom: 1px solid #474747 !important;
+
+    .sidebar-list-item:hover,
+    .sidebar-list-item.sidebar-list-item-selected {
+        background-color: rgb(from var(--accent-color) r g b / 0.11) !important;
+        border-radius: 6px !important;
+        box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
+            rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+
+    }
+
+}
+
+/* adjust activitybar top tabs hightlight */
+#workbench\.parts\.sidebar>div>div>div:nth-child(1)>div>div:nth-child(1) {
+    justify-content: space-evenly !important;
+
+    .sidebar2-item-icon-anysphere {
+        &.sidebar-list-item-selected {
+            width: 30px !important;
+            height: 30px !important;
+            border-radius: 6px;
+            background-color: rgb(from var(--accent-color) r g b / 0.22);
+            box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
+                rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+        }
+
+        &:hover:not(.sidebar-list-item-selected) {
+            background: none !important;
+        }
+
+        .codicon {
+            font-size: 20px !important;
+        }
+
+        .codicon.codicon-chevron-up,
+        .codicon.codicon-chevron-down {
+            position: absolute;
+        }
+    }
+}
+
+/* #endregion-------cursor-------*/
+
+/* #endregion-------small fixes and optimizations-------*/
 
 
 /* --------------------------------- */
