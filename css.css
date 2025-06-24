@@ -1,590 +1,29 @@
 :root {
+    --font-family: 'JetBrains Mono';
     --border-radius: 15px;
     --spacing: 5px;
     --spacing-color: #000001;
-    --accent-color: #00e7e3;
+    --accent-color: #16B673;
     --immersive: 0;
     /* 0=no & 1=yes */
-    --filetree-icon-scale: 100%;
-    --filetree-label-scale: 100%;
+    --filetree-icon-scale: 110%;
+    --filetree-label-scale: 110%;
 }
 
-.monaco-workbench {
-    font-family: "JetBrains Mono" !important;
-    font-weight: 500 !important;
+body .monaco-workbench {
+    font-family: var(--font-family) !important;
     background-color: var(--spacing-color) !important;
 }
 
 /* #region-------rounded corners and spacing-------*/
-.part.activitybar {
-    &.left {
+
+body .monaco-workbench:has(.part.activitybar.left .composite-bar) {
+    .part.activitybar.bordered.left {
         border-top-right-radius: var(--border-radius);
         border-bottom-right-radius: var(--border-radius);
         border: 0px solid transparent !important;
     }
 
-    &.right {
-        border-top-left-radius: var(--border-radius);
-        border-bottom-left-radius: var(--border-radius);
-        border: 0px solid transparent !important;
-    }
-}
-
-.part.sidebar,
-.part.auxiliarybar {
-    border-radius: var(--border-radius) !important;
-    padding: 0px 5px !important;
-
-    &.left {
-        margin-top: calc(var(--spacing) * 0) !important;
-        margin-bottom: calc(var(--spacing) * 0) !important;
-        margin-right: calc(var(--spacing) * 0) !important;
-        margin-left: calc(var(--spacing) * 2) !important;
-        width: calc(100% - var(--spacing) * 2) !important;
-        height: calc(100% - var(--spacing) * 0) !important;
-    }
-
-    &.right {
-        margin-top: calc(var(--spacing) * 0) !important;
-        margin-bottom: calc(var(--spacing) * 0) !important;
-        margin-right: calc(var(--spacing) * 2) !important;
-        margin-left: calc(var(--spacing) * 0) !important;
-        width: calc(100% - var(--spacing) * 2) !important;
-        height: calc(100% - var(--spacing) * 0) !important;
-    }
-
-    /* -----some adjustments----- */
-
-    * {
-        max-width: 100%;
-    }
-
-    .search-view .search-widget .replace-container {
-        width: calc(100% - var(--spacing) * 2 - 20px) !important;
-    }
-
-    .integrated-terminal .tabs-container {
-        width: calc(100% - var(--spacing) * 2) !important;
-
-        .monaco-list-row {
-            max-width: 95% !important;
-        }
-    }
-}
-
-.part.editor {
-    margin-top: calc(var(--spacing) * 0) !important;
-    margin-bottom: calc(var(--spacing) * 0) !important;
-    margin-right: calc(var(--spacing) * 2) !important;
-    margin-left: calc(var(--spacing) * 2) !important;
-    width: calc(100% - var(--spacing) * 4) !important;
-    /* height: calc(100% - var(--spacing) * 0) !important; */
-    border-radius: var(--border-radius) !important;
-
-    /* -----some adjustments-----*/
-    >.content {
-        width: calc(100%) !important;
-
-        .editor-actions {
-            position: static !important;
-            margin-top: auto !important;
-            margin-bottom: auto !important;
-        }
-
-        .split-view-view.visible:last-of-type {
-
-            .editor-group-container {
-                width: calc(100% - var(--spacing) * 4) !important;
-
-                .sticky-widget {
-                    width: calc(100% - var(--spacing) * 4 - 14px) !important;
-                }
-
-                .decorationsOverviewRuler,
-                .editor-scrollable .scrollbar.vertical {
-                    margin-right: calc(var(--spacing) * 4) !important;
-                }
-
-                /* .split-view-view.visible:last-of-type .monaco-editor .minimap { */
-                /* made with js as the 7.15% isn't accurate; */
-                /* left: calc(100% - var(--spacing) * 4 - 7.15%) !important; */
-                /* } */
-            }
-
-            .monaco-diff-editor {
-
-                .editor.original .decorationsOverviewRuler,
-                .editor.original .scrollbar.vertical {
-                    margin-right: calc(var(--spacing) * 0) !important;
-                }
-
-                .editor.original .sticky-widget {
-                    width: calc(100% - var(--spacing) * 0 - 14px) !important;
-                }
-
-                .diffOverview {
-                    left: calc(100% - var(--spacing) * 4 - 10px) !important;
-                    background-color: var(--vscode-editor-background) !important;
-                }
-            }
-
-            .zone-widget {
-                width: calc(100% - var(--spacing) * 4 - 15px) !important;
-
-                .decorationsOverviewRuler {
-                    margin-right: calc(var(--spacing) * 0) !important;
-                }
-
-                .ref-tree.inline {
-                    width: calc(100% - var(--spacing) * 4 - 10px) !important;
-                    padding: 0px 5px !important;
-                }
-            }
-        }
-    }
-}
-
-.part.panel {
-    border-radius: var(--border-radius) !important;
-    display: flex;
-    flex-direction: column;
-
-    &.bottom {
-        margin-top: calc(var(--spacing) * 2) !important;
-        margin-bottom: calc(var(--spacing) * 0) !important;
-        margin-right: calc(var(--spacing) * 2) !important;
-        margin-left: calc(var(--spacing) * 2) !important;
-        width: calc(100% - var(--spacing) * 4) !important;
-        height: calc(100% - var(--spacing) * 2) !important;
-
-        &:has(.composite.title.has-composite-bar>.global-actions>.monaco-toolbar>.monaco-action-bar>.actions-container>.action-item.menu-entry>.action-label.checked.codicon-panel-restore) {
-            margin-top: calc(var(--spacing) * 0) !important;
-            height: calc(100% - var(--spacing) * 0) !important;
-        }
-    }
-
-    &.top {
-        margin-top: calc(var(--spacing) * 0) !important;
-        margin-bottom: calc(var(--spacing) * 2) !important;
-        margin-right: calc(var(--spacing) * 2) !important;
-        margin-left: calc(var(--spacing) * 2) !important;
-        width: calc(100% - var(--spacing) * 4) !important;
-        height: calc(100% - var(--spacing) * 2) !important;
-
-        &:has(.composite.title.has-composite-bar>.global-actions>.monaco-toolbar>.monaco-action-bar>.actions-container>.action-item.menu-entry>.action-label.checked.codicon-panel-restore) {
-            margin-bottom: calc(var(--spacing) * 0) !important;
-            height: calc(100% - var(--spacing) * 0) !important;
-        }
-    }
-
-    &.left {
-        margin-left: calc(var(--spacing) * 2) !important;
-        width: calc(100% - var(--spacing) * 2) !important;
-
-        &:has(.composite.title.has-composite-bar>.global-actions>.monaco-toolbar>.monaco-action-bar>.actions-container>.action-item.menu-entry>.action-label.checked.codicon-panel-restore) {
-            margin-right: calc(var(--spacing) * 2) !important;
-            width: calc(100% - var(--spacing) * 4) !important;
-
-            .integrated-terminal .tabs-container {
-                width: calc(100% - var(--spacing) * 4) !important;
-            }
-        }
-
-        .integrated-terminal .tabs-container {
-            width: calc(100% - var(--spacing) * 2) !important;
-        }
-    }
-
-    &.right {
-        margin-right: calc(var(--spacing) * 2) !important;
-        width: calc(100% - var(--spacing) * 2) !important;
-
-        &:has(.composite.title.has-composite-bar>.global-actions>.monaco-toolbar>.monaco-action-bar>.actions-container>.action-item.menu-entry>.action-label.checked.codicon-panel-restore) {
-            margin-left: calc(var(--spacing) * 2) !important;
-            width: calc(100% - var(--spacing) * 4) !important;
-
-            .integrated-terminal .tabs-container {
-                width: calc(100% - var(--spacing) * 4) !important;
-            }
-        }
-
-        .integrated-terminal .tabs-container {
-            width: calc(100% - var(--spacing) * 2) !important;
-        }
-    }
-
-    /* -----some adjustments----- */
-    .monaco-list-row {
-        max-width: 97% !important;
-        margin-left: .8% !important;
-    }
-
-    .integrated-terminal .tabs-container {
-        width: calc(100% - var(--spacing) * 4) !important;
-    }
-
-    .repl:has(div.repl-tree.monaco-mouse-cursor-text.word-wrap) {
-        display: flex;
-        flex-direction: column-reverse;
-
-        .repl-input-wrapper {
-            position: absolute;
-        }
-    }
-}
-
-/* #endregion-------rounded corners and spacing-------*/
-
-/* #region-------rounded corners for lists and inputs-------*/
-.scm-editor,
-.monaco-button,
-.monaco-select-box,
-.monaco-inputbox,
-.monaco-hover,
-.suggest-details,
-.suggest-widget,
-.monaco-editor .find-widget,
-.suggest-input-container,
-.editor-widget.suggest-widget.visible,
-.suggest-details,
-.chat-input-container,
-.notification-fade-in-done,
-.notification-toast,
-.notification-toast>.notifications-list-container,
-.notification-toast>.notifications-list-container>.monaco-list,
-.notifications-center,
-.monaco-menu .action-item a.focused,
-.monaco-menu .action-item a:hover,
-.part.sidebar .pane-header,
-.part.auxiliarybar .pane-header,
-.monaco-list.mouse-support,
-.monaco-list-row.focused,
-.monaco-list-row.selected,
-.monaco-list-row {
-    border-radius: 6px !important;
-    /* margin-right: 4px !important; */
-    /* max-width: calc(100% - 4px) !important; */
-}
-
-.monaco-button-dropdown .monaco-button-dropdown-separator {
-    display: none !important;
-}
-
-/* #endregion-------rounded corners for lists and inputs-------*/
-
-/* #region-------active tab highlight------*/
-
-.part.editor .tabs-container {
-    padding: 7px 0px;
-
-    >* {
-        border-radius: 7px !important;
-        border: 1px solid transparent !important;
-        margin: 0px 7px !important;
-    }
-
-    .tab.selected {
-        border-radius: 7px !important;
-        background-color: rgb(from var(--accent-color) r g b / 0.22) !important;
-        border: 1px solid rgb(from var(--accent-color) r g b / 0.0) !important;
-        box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
-            rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
-    }
-
-    .tab-border-top-container,
-    .tab-border-bottom-container {
-        display: none !important;
-    }
-}
-
-/* .part.activitybar ul[role=tablist] .action-item:hover .action-label::after, */
-.part.activitybar ul[role=tablist] .action-item.checked .action-label::after {
-    width: 80%;
-    height: 80%;
-    position: absolute;
-    border-radius: 6px;
-    content: '';
-    background-color: rgb(from var(--accent-color) r g b / 0.22);
-    box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
-        rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
-}
-
-.part.auxiliarybar ul[role=tablist] .action-item,
-.part.sidebar ul[role=tablist] .action-item {
-
-    /* &.action-item:hover .action-label::after, */
-    &.action-item.checked .action-label::after {
-        content: '';
-        width: 110%;
-        height: 75%;
-        position: absolute;
-        left: 1px !important;
-        border-radius: 6px;
-        background-color: rgb(from var(--accent-color) r g b / 0.22);
-        box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
-            rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
-    }
-
-    .active-item-indicator {
-        display: none;
-    }
-
-    .action-label.codicon {
-        font-size: 20px;
-    }
-
-    .action-label:not(.codicon) {
-        font-size: 13px;
-    }
-}
-
-.monaco-list-row:hover,
-.monaco-list-row.focused,
-.monaco-list-row.selected,
-.part.sidebar .pane-header.expanded,
-.part.auxiliarybar .pane-header.expanded {
-    background-color: rgb(from var(--accent-color) r g b / 0.11) !important;
-    border-radius: 6px !important;
-    box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
-        rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
-}
-
-.part.panel .action-item.checked {
-    height: 70%;
-    border-radius: 7px !important;
-    background-color: rgb(from var(--accent-color) r g b / 0.22) !important;
-    border: 1px solid rgb(from var(--accent-color) r g b / 0.0) !important;
-    box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
-        rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
-
-    .active-item-indicator {
-        display: none !important;
-    }
-}
-
-.extension-editor>.body>.navbar>.monaco-action-bar>.actions-container>.action-item>.action-label.checked::after {
-    content: '';
-    width: 95%;
-    height: 75%;
-    position: absolute;
-    top: 3px !important;
-    left: 2px !important;
-    border-radius: 6px;
-    background-color: rgb(from var(--accent-color) r g b / 0.22);
-    box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
-        rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
-
-}
-
-/* #endregion-------tabs------*/
-
-/* #region-------scrollbar sliders and minimap-------*/
-.scrollbar.vertical .slider {
-    width: 4px !important;
-    left: 5px !important;
-    border-radius: 2px !important;
-    cursor: grab !important;
-
-    &:hover {
-        width: 8px !important;
-        left: 3px !important;
-        border-radius: 4px !important;
-    }
-
-    &:active {
-        cursor: grabbing !important;
-    }
-}
-
-.scrollbar.horizontal .slider {
-    height: 4px !important;
-    border-radius: 2px !important;
-    cursor: grab !important;
-
-    &:hover {
-        height: 8px !important;
-        border-radius: 2px !important;
-    }
-
-    &:active {
-        cursor: grabbing !important;
-    }
-}
-
-.minimap-slider {
-    border-radius: 4px !important;
-    cursor: grab !important;
-    box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
-        rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
-
-    &:active {
-        cursor: grabbing !important;
-
-    }
-}
-
-/* #endregion-------scrollbar sliders-------*/
-
-/* #region-------miscellaneous tweaks-------*/
-
-/* center activity bar top */
-.part.sidebar .composite-bar-container,
-.part.auxiliarybar .composite-bar-container {
-    .composite-bar {
-        width: 100%;
-    }
-
-    .actions-container {
-        justify-content: space-evenly !important;
-    }
-}
-
-/* gutter current line highlight */
-.monaco-editor .margin-view-overlays .current-line-margin,
-.monaco-editor .margin-view-overlays .current-line-exact-margin {
-    background-color: rgb(from var(--accent-color) r g b / 0.11) !important;
-    box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
-        rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
-    border-radius: 7px !important;
-    max-height: 95% !important;
-    max-width: 77% !important;
-    margin-left: 7% !important;
-}
-
-/* Sidebar bigger title */
-.monaco-workbench .part.sidebar>.title>.title-label h2,
-.monaco-workbench .part.auxiliarybar>.title>.title-label h2 {
-    color: var(--vscode-sideBarTitle-foreground) !important;
-    text-transform: none !important;
-    font-size: 15px;
-    font-weight: 800;
-}
-
-/* Command palette bigger text input*/
-.quick-input-filter .monaco-inputbox {
-    border-radius: 8px !important;
-    padding: 4px !important;
-    background-color: var(--vscode-editor-background) !important;
-    font-size: 14px !important;
-    margin-bottom: 16px !important;
-}
-
-/* tweak editor find widget */
-.monaco-editor .find-widget.visible {
-    top: 10px !important;
-    border-radius: 6px !important;
-    border: 1px solid var(--vscode-editorWidget-border) !important;
-}
-
-/* Remove tips from home page. */
-.editor-group-watermark .shortcuts {
-    display: none !important;
-}
-
-/* Remove vscode icon in the titlebar */
-.part.titlebar .window-appicon {
-    display: none;
-}
-
-/* accent colored icons in the titlebar */
-.part.titlebar .action-label.codicon:hover {
-    color: var(--accent-color) !important;
-}
-
-/* colorpicker */
-.colorpicker-color-decoration {
-    border: none !important;
-    border-radius: 30% !important;
-}
-
-/* colored icons in statusbar */
-.part.statusbar {
-    .codicon-error {
-        color: #ff3377 !important;
-    }
-
-    .codicon-warning {
-        color: #cccc00 !important;
-    }
-
-    .codicon-git-branch {
-        color: #9988ff !important
-    }
-
-    .codicon-sync {
-        color: #11cc99 !important;
-    }
-
-    .codicon-bell,
-    .codicon-bell-dot {
-        color: #0e80c0 !important;
-    }
-}
-
-/* bigger file icons and labels*/
-.pane-body .explorer-folders-view.file-icon-themable-tree .monaco-list-rows .monaco-tl-row {
-
-    .monaco-tl-twistie.collapsible.codicon,
-    .monaco-icon-label::before {
-        background-size: calc(0.75 * var(--filetree-icon-scale)) !important;
-        font-size: calc(1.25 * var(--filetree-icon-scale)) !important;
-    }
-
-    .monaco-tl-contents .label-name {
-        font-size: calc(1 * var(--filetree-label-scale)) !important;
-        padding-left: calc(.01 * var(--filetree-label-scale)) !important;
-    }
-}
-
-/* immersive: hide titlebar and statusbar content */
-.part.titlebar .titlebar-center,
-.part.titlebar .titlebar-right,
-.part.titlebar .menubar,
-.part.statusbar .items-container {
-    opacity: calc(1 - var(--immersive)) !important;
-    transition: all 0.25s;
-
-    &:hover {
-        opacity: 1 !important;
-    }
-}
-
-/* #endregion-------little tweaks-------*/
-
-/* #region-------animations-------*/
-
-/* settings icon animation in the activity bar */
-.codicon-settings-view-bar-icon {
-    transition: transform 250ms cubic-bezier(1, 1, 1, 1);
-
-    &.codicon-settings-view-bar-icon:hover {
-        transform: rotate(90deg);
-        background-color: transparent !important;
-    }
-}
-
-/* gutter active line number animation */
-.line-numbers.active-line-number,
-.current-line.current-line-margin .line-numbers {
-    transform: scale(1.25) translateX(-3px);
-    animation: .2s ease-out scaleSize;
-}
-
-@keyframes scaleSize {
-    0% {
-        transform: scale(.75)
-    }
-
-    100% {
-        transform: scale(1.35) translateX(-3px);
-    }
-}
-
-/* #endregion-------animations-------*/
-
-/* #region-------conditions-------*/
-/* activitybar states while have panel and sidebar in different positions */
-.monaco-workbench:has(.part.activitybar.left .composite-bar) {
     &:has(.part.sidebar:not(.empty)) {
         &:not(:has(div.monaco-grid-view>div>div>div.monaco-scrollable-element>div.split-view-container>div:nth-child(3)>div>div>div.monaco-scrollable-element>div.split-view-container>div:nth-child(2)>div>div>div.monaco-scrollable-element>div.split-view-container .part.panel:not(.empty))) {
             .part.activitybar {
@@ -632,7 +71,8 @@
     }
 }
 
-.monaco-workbench:has(.part.activitybar.right .composite-bar) {
+body .monaco-workbench:has(.part.activitybar.right .composite-bar) {
+
     .part.activitybar.bordered.right {
         border-top-left-radius: var(--border-radius);
         border-bottom-left-radius: var(--border-radius);
@@ -686,23 +126,797 @@
     }
 }
 
-/* #endregion-------conditions-------*/
+body .monaco-workbench .part.sidebar,
+body .monaco-workbench .part.auxiliarybar {
+    border-radius: var(--border-radius) !important;
+
+    &.left {
+        margin-top: calc(var(--spacing) * 0) !important;
+        margin-bottom: calc(var(--spacing) * 0) !important;
+        margin-right: calc(var(--spacing) * 0) !important;
+        margin-left: calc(var(--spacing) * 2) !important;
+        width: calc(100% - var(--spacing) * 2) !important;
+        height: calc(100% - var(--spacing) * 0) !important;
+    }
+
+    &.right {
+        margin-top: calc(var(--spacing) * 0) !important;
+        margin-bottom: calc(var(--spacing) * 0) !important;
+        margin-right: calc(var(--spacing) * 2) !important;
+        margin-left: calc(var(--spacing) * 0) !important;
+        width: calc(100% - var(--spacing) * 2) !important;
+        height: calc(100% - var(--spacing) * 0) !important;
+    }
+
+    /* -----some adjustments----- */
+
+    * {
+        max-width: 100%;
+    }
+
+    .search-view .search-widget .replace-container {
+        width: calc(100% - var(--spacing) * 2 - 20px) !important;
+    }
+
+    .integrated-terminal .tabs-container {
+        width: calc(100% - var(--spacing) * 2) !important;
+
+        &:not(.has-text) .monaco-list-row {
+            background: none !important;
+        }
+
+        .monaco-list-row .terminal-tabs-entry.is-active::before {
+            display: none !important;
+        }
+    }
+}
+
+body .monaco-workbench .part.editor {
+    --editor-width: calc(100% - var(--spacing) * 4);
+    --editor-height: calc(100% - var(--spacing) * 0);
+    --margin-horizontal: calc(var(--spacing) * 4);
+    width: var(--editor-width);
+    height: var(--editor-height);
+    margin-top: calc(var(--spacing) * 0) !important;
+    margin-bottom: calc(var(--spacing) * 0) !important;
+    margin-right: calc(var(--margin-horizontal) / 2) !important;
+    margin-left: calc(var(--margin-horizontal) / 2) !important;
+    border-radius: var(--border-radius) !important;
+
+    /* -----some adjustments-----*/
+    >.content {
+        width: calc(100%) !important;
+        background: var(--spacing-color) !important;
+
+        .editor-actions {
+            position: static !important;
+            margin-top: auto !important;
+            margin-bottom: auto !important;
+        }
+
+        &.content>.grid-view-container>.monaco-grid-view>.monaco-grid-branch-node>.monaco-split-view2.horizontal>.monaco-scrollable-element>.split-view-container>.split-view-view.visible:last-of-type,
+        .monaco-split-view2.vertical>.monaco-scrollable-element>.split-view-container>.split-view-view.visible:has(> .editor-group-container):has(~ .monaco-split-view2.horizontal),
+        &.content>.grid-view-container>.monaco-grid-view>.monaco-grid-branch-node>.monaco-split-view2.vertical>.monaco-scrollable-element>.split-view-container>.split-view-view.visible {
+
+            .editor-group-container {
+                border-radius: var(--border-radius);
+
+                .monaco-diff-editor .editor.modified .sticky-widget:not(.peek),
+                .editor-instance>.monaco-editor .sticky-widget:not(.peek) {
+                    width: calc(var(--editor-width) - 14px) !important;
+                }
+
+                .monaco-diff-editor .editor.modified .decorationsOverviewRuler,
+                .monaco-diff-editor .editor.modified .scrollbar.vertical,
+                .editor-instance>.monaco-editor .decorationsOverviewRuler,
+                .editor-instance>.monaco-editor .editor-scrollable .scrollbar.vertical {
+                    left: calc(var(--editor-width) - 14px);
+                }
+
+                .monaco-editor .minimap {
+                    left: unset !important;
+                    right: calc(var(--margin-horizontal) + 14px - 1px) !important;
+                }
+
+                .monaco-diff-editor .diffOverview {
+                    left: unset !important;
+                    right: 0px !important;
+                    background-color: var(--vscode-editor-background) !important;
+                }
+
+                .zone-widget {
+                    width: calc(var(--editor-width) - 15px - 100px) !important;
+
+                    .scrollbar.vertical,
+                    .decorationsOverviewRuler {
+                        left: unset !important;
+                        right: 0px !important;
+                        background-color: var(--vscode-peekViewEditor-background) !important;
+                    }
+
+                    .ref-tree.inline {
+                        width: var(--editor-width) !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+body .monaco-workbench .part.panel {
+    border-radius: var(--border-radius) !important;
+    display: flex;
+    flex-direction: column;
+    --panel-width: ;
+    --panel-height: ;
+    width: var(--panel-width);
+    height: var(--panel-height);
+
+    &.bottom {
+        margin-top: calc(var(--spacing) * 2) !important;
+        margin-bottom: calc(var(--spacing) * 0) !important;
+        margin-right: calc(var(--spacing) * 2) !important;
+        margin-left: calc(var(--spacing) * 2) !important;
+        --panel-width: calc(100% - var(--spacing) * 4) !important;
+        --panel-height: calc(100% - var(--spacing) * 2) !important;
+
+        &:has(.composite.title.has-composite-bar>.global-actions>.monaco-toolbar>.monaco-action-bar>.actions-container>.action-item.menu-entry>.action-label.checked.codicon-panel-restore) {
+            margin-top: calc(var(--spacing) * 0) !important;
+            --panel-height: calc(100% - var(--spacing) * 0) !important;
+        }
+    }
+
+    &.top {
+        margin-top: calc(var(--spacing) * 0) !important;
+        margin-bottom: calc(var(--spacing) * 2) !important;
+        margin-right: calc(var(--spacing) * 2) !important;
+        margin-left: calc(var(--spacing) * 2) !important;
+        --panel-width: calc(100% - var(--spacing) * 4) !important;
+        --panel-height: calc(100% - var(--spacing) * 2) !important;
+
+        &:has(.composite.title.has-composite-bar>.global-actions>.monaco-toolbar>.monaco-action-bar>.actions-container>.action-item.menu-entry>.action-label.checked.codicon-panel-restore) {
+            margin-bottom: calc(var(--spacing) * 0) !important;
+            --panel-height: calc(100% - var(--spacing) * 0) !important;
+        }
+    }
+
+    &.left {
+        margin-left: calc(var(--spacing) * 2) !important;
+        --panel-width: calc(100% - var(--spacing) * 2) !important;
+
+        &:has(.composite.title.has-composite-bar>.global-actions>.monaco-toolbar>.monaco-action-bar>.actions-container>.action-item.menu-entry>.action-label.checked.codicon-panel-restore) {
+            margin-right: calc(var(--spacing) * 2) !important;
+            --panel-width: calc(100% - var(--spacing) * 4) !important;
+        }
+    }
+
+    &.right {
+        margin-right: calc(var(--spacing) * 2) !important;
+        --panel-width: calc(100% - var(--spacing) * 2) !important;
+
+        &:has(.composite.title.has-composite-bar>.global-actions>.monaco-toolbar>.monaco-action-bar>.actions-container>.action-item.menu-entry>.action-label.checked.codicon-panel-restore) {
+            margin-left: calc(var(--spacing) * 2) !important;
+            --panel-width: calc(100% - var(--spacing) * 4) !important;
+        }
+    }
+
+    /* -----some adjustments----- */
+    .pane-body {
+        width: var(--panel-width) !important;
+
+        .monaco-list-row {
+            width: calc(100% - 10px);
+            margin-left: 5px;
+        }
+
+        &.integrated-terminal .tabs-container {
+            width: var(--panel-width) !important;
+
+            &:not(.has-text) .monaco-list-row {
+                background: none !important;
+            }
+
+            .monaco-list-row .terminal-tabs-entry.is-active::before {
+                display: none !important;
+            }
+        }
+
+        .repl:has(div.repl-tree.monaco-mouse-cursor-text.word-wrap) {
+            display: flex;
+            flex-direction: column-reverse;
+
+            .repl-input-wrapper {
+                position: absolute;
+            }
+        }
+    }
+}
+
+/* #endregion-------rounded corners and spacing-------*/
+
+/* #region-------highlight active------*/
+
+/* highlight avtive editor tab */
+body .monaco-workbench .part.editor {
+    .tabs-container {
+        padding: 7px 7px 7px 7px !important;
+
+        .tab.selected {
+            border-radius: 7px !important;
+            background-color: rgb(from var(--accent-color) r g b / 0.22) !important;
+            outline: 1px solid rgb(from var(--accent-color) r g b / 0.0) !important;
+            box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
+                rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+        }
+
+        .tab-border-top-container,
+        .tab-border-bottom-container {
+            display: none !important;
+        }
+    }
+
+    .editor-container {
+        height: calc(100% - 35px - 14px) !important;
+
+        .monaco-editor .overflow-guard .monaco-scrollable-element.editor-scrollable .invisible.scrollbar.vertical,
+        .monaco-editor .overflow-guard .monaco-scrollable-element.editor-scrollable .decorationsOverviewRuler,
+        .monaco-editor .overflow-guard .monaco-scrollable-element.editor-scrollable,
+        .monaco-editor .overflow-guard,
+        .monaco-editor {
+            height: calc(100%) !important;
+        }
+    }
+}
+
+/* gutter current line highlight */
+body .monaco-workbench .part.editor .monaco-editor .margin-view-overlays .current-line-margin,
+body .monaco-workbench .part.editor .monaco-editor .margin-view-overlays .current-line-exact-margin {
+    background-color: rgb(from var(--accent-color) r g b / 0.11) !important;
+    outline: 1px solid rgb(from var(--accent-color) r g b / 0.0) !important;
+    box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
+        rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+    border-radius: 7px !important;
+    max-height: 95% !important;
+    max-width: 77% !important;
+    margin-left: 7% !important;
+}
+
+/* activitybar highlight active tab */
+body .monaco-workbench .part.activitybar ul[role=tablist] {
+
+    /* .action-item:hover .action-label::after, */
+    .action-item.checked .action-label::after {
+        width: 80%;
+        height: 80%;
+        position: absolute;
+        border-radius: 6px;
+        content: '';
+        background-color: rgb(from var(--accent-color) r g b / 0.22);
+        box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
+            rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+    }
+}
+
+/* highlight tabs for acitvitybar top */
+body .monaco-workbench .part.auxiliarybar ul[role=tablist] .action-item,
+body .monaco-workbench .part.sidebar ul[role=tablist] .action-item {
+
+    /* &.action-item:hover .action-label::after, */
+    &.action-item.checked .action-label::after {
+        content: '';
+        width: 110%;
+        height: 75%;
+        position: absolute;
+        left: 1px !important;
+        border-radius: 6px;
+        background-color: rgb(from var(--accent-color) r g b / 0.22);
+        box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
+            rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+    }
+
+    .active-item-indicator {
+        display: none;
+    }
+}
+
+/* sidebar active headers highlight */
+body .monaco-workbench .part.sidebar .pane-header.expanded,
+body .monaco-workbench .part.auxiliarybar .pane-header.expanded {
+    background-color: rgb(from var(--accent-color) r g b / 0.11) !important;
+    border: 1px solid var(--vscode-sideBar-background) !important;
+    box-sizing: content-box;
+    border-radius: 6px !important;
+    box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
+        rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+}
+
+/* panel tabs */
+body .monaco-workbench .part.panel .action-item.checked {
+    height: 70%;
+    border-radius: 6px !important;
+    background-color: rgb(from var(--accent-color) r g b / 0.22) !important;
+    outline: 1px solid rgb(from var(--accent-color) r g b / 0.0) !important;
+    box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
+        rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+
+    .active-item-indicator {
+        display: none !important;
+    }
+}
+
+/* extension */
+.extension-editor>.body>.navbar>.monaco-action-bar>.actions-container>.action-item>.action-label.checked::after {
+    content: '';
+    width: 95%;
+    height: 75%;
+    position: absolute;
+    top: 3px !important;
+    left: 2px !important;
+    border-radius: 6px;
+    background-color: rgb(from var(--accent-color) r g b / 0.22);
+    outline: 1px solid rgb(from var(--accent-color) r g b / 0.0) !important;
+    box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
+        rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+
+}
+
+/* #endregion-------highlight active------*/
+
+/* #region-------scrollbar sliders and minimap-------*/
+.scrollbar.vertical {
+    .slider {
+        border-radius: 2px !important;
+        width: 4px !important;
+        left: 5px !important;
+        cursor: grab !important;
+    }
+
+    &:hover .slider {
+        border-radius: 4px !important;
+        width: 8px !important;
+        left: 3px !important;
+    }
+
+    &:active .slider {
+        cursor: grabbing !important;
+    }
+}
+
+.scrollbar.horizontal {
+    .slider {
+        border-radius: 2px !important;
+        height: 4px !important;
+        cursor: grab !important;
+    }
+
+    &:hover .slider {
+        height: 8px !important;
+        border-radius: 4px !important;
+    }
+
+    &:active .slider {
+        cursor: grabbing !important;
+    }
+}
+
+body .monaco-workbench .part.editor>.content .monaco-diff-editor .diffOverview .diffViewport,
+.minimap-slider {
+    border-radius: 4px !important;
+    cursor: grab !important;
+    box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
+        rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+
+    &:active {
+        cursor: grabbing !important;
+    }
+}
+
+/* #endregion-------scrollbar sliders-------*/
+
+/* #region-------list rows highlight-------*/
+
+body .monaco-workbench {
+
+    .monaco-list-rows .monaco-list-row {
+        width: calc(100% - 10px) !important;
+        margin-left: 5px !important;
+
+        &:not(.force-no-hover):hover,
+        &.focused,
+        &.selected {
+            background-color: rgb(from var(--accent-color) r g b / 0.11) !important;
+            outline: 1px solid var(--vscode-editor-background) !important;
+            border-radius: 6px !important;
+            box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
+                rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+            /* border: .5px solid transparent !important;
+    background-clip: padding-box !important;
+    left: -.5px !important; */
+        }
+    }
+
+    /* fixes for list rows highlight */
+
+    .part.panel .pane-body.integrated-terminal .tabs-container:not(.has-text) .monaco-list-row,
+    .quick-input-widget .quick-input-list .monaco-list-rows .monaco-list-row,
+    .notifications-toasts .monaco-list-row {
+        width: calc(100%) !important;
+        margin-left: 0px !important;
+    }
+
+    .zone-widget .body .ref-tree .monaco-list-rows .monaco-list-row,
+    .notifications-center .monaco-list-rows .monaco-list-row,
+    .notification-toast .monaco-list-rows .monaco-list-row,
+    .editor-widget.suggest-widget .monaco-list-rows .monaco-list-row,
+    .quick-input-widget .quick-input-list .monaco-list-rows .monaco-list-row {
+
+        &:not(.force-no-hover):hover,
+        &.focused,
+        &.selected {
+            outline: 1px solid var(--vscode-quickInput-background) !important;
+        }
+    }
+
+    .part.panel .pane-body.integrated-terminal .tabs-container:not(.has-text) .monaco-list-row,
+    .settings-tree-container .monaco-list-rows .monaco-list-row:hover,
+    .settings-tree-container .monaco-list-rows .monaco-list-row.focused,
+    .settings-tree-container .monaco-list-rows .monaco-list-row.selected {
+        background: none !important;
+        box-shadow: none !important;
+    }
+
+    .part.editor .editor-container .keybindings-editor .keybindings-body .monaco-list-row .monaco-table-td .actions {
+        margin-left: -10px;
+    }
+}
+
+/* #endregion-------list rows highlight-------*/
+
+/* #region-------miscellaneous tweaks-------*/
+
+/* activitybar top centered and bigger */
+.part.sidebar,
+.part.auxiliarybar {
+    ul[role=tablist] .action-item {
+        .action-label.codicon {
+            font-size: 20px;
+        }
+
+        .action-label:not(.codicon) {
+            font-size: 13px;
+        }
+    }
+
+    .composite-bar-container {
+        .composite-bar {
+            width: 100%;
+        }
+
+        .actions-container {
+            justify-content: space-evenly !important;
+        }
+    }
+}
+
+/* Sidebar bigger title */
+.monaco-workbench .part.sidebar>.title>.title-label h2,
+.monaco-workbench .part.auxiliarybar>.title>.title-label h2 {
+    color: var(--vscode-sideBarTitle-foreground) !important;
+    text-transform: none !important;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+/* Command palette bigger text input*/
+.quick-input-filter .monaco-inputbox {
+    border-radius: 8px !important;
+    padding: 4px !important;
+    background-color: var(--vscode-editor-background) !important;
+    font-size: 14px !important;
+    margin-bottom: 16px !important;
+}
+
+/* tweak editor find widget */
+.monaco-editor .find-widget.visible {
+    top: 10px !important;
+    border-radius: 6px !important;
+    border: 1px solid var(--vscode-editorWidget-border) !important;
+}
+
+/* Remove tips from home page. */
+.editor-group-watermark .shortcuts {
+    display: none !important;
+}
+
+/* Remove vscode icon in the titlebar */
+.part.titlebar .window-appicon {
+    display: none;
+}
+
+/* accent colored icons in the titlebar */
+.part.titlebar .action-label.codicon:hover {
+    color: var(--accent-color) !important;
+}
+
+/* colorpicker */
+.colorpicker-color-decoration {
+    border: none !important;
+    border-radius: 30% !important;
+}
+
+/* colored icons in statusbar */
+.part.statusbar {
+    .codicon {
+        color: var(--accent-color) !important;
+    }
+
+    .statusbar-item-label:hover .codicon.codicon-remote {
+        color: var(--vscode-statusBarItem-remoteHoverForeground) !important;
+    }
+
+    .codicon-error {
+        color: #ff3377 !important;
+    }
+
+    .codicon-warning,
+    .codicon-alert {
+        color: #eebb11 !important;
+    }
+
+    .codicon-sync,
+    .codicon-git-commit,
+    .codicon-repo,
+    .codicon-cloud-upload,
+    .codicon-git-branch {
+        color: #7733ff !important
+    }
+
+    .codicon-bell,
+    .codicon-bell-dot {
+        color: #0e80c0 !important;
+    }
+}
+
+/* bigger file icons and labels*/
+.pane-body .explorer-folders-view.file-icon-themable-tree .monaco-tree-sticky-container .monaco-tl-row,
+.pane-body .explorer-folders-view.file-icon-themable-tree .monaco-list-rows .monaco-tl-row {
+
+    .monaco-tl-twistie.collapsible.codicon,
+    .monaco-icon-label::before {
+        background-size: calc(0.75 * var(--filetree-icon-scale)) !important;
+        font-size: calc(1.25 * var(--filetree-icon-scale)) !important;
+    }
+
+    .monaco-tl-contents .label-name {
+        font-size: calc(1 * var(--filetree-label-scale)) !important;
+        padding-left: calc(.01 * var(--filetree-label-scale)) !important;
+    }
+}
+
+/* immersive: hide titlebar and statusbar content */
+.part.titlebar .titlebar-center,
+.part.titlebar .titlebar-right,
+.part.titlebar .menubar,
+.part.statusbar .items-container {
+    opacity: calc(1 - var(--immersive)) !important;
+    transition: all 0.25s;
+
+    &:hover {
+        opacity: 1 !important;
+    }
+}
+
+/* fix in foucs quick input keybindingLabel background */
+.quick-input-widget .quick-input-list .monaco-list-row {
+
+    &:hover .quick-input-list-row .quick-input-list-entry-keybinding .monaco-keybinding .monaco-keybinding-key,
+    &.focused .quick-input-list-row .quick-input-list-entry-keybinding .monaco-keybinding .monaco-keybinding-key {
+        background-color: var(--vscode-keybindingLabel-background) !important;
+        color: var(--accent-color) !important;
+    }
+}
+
+/* #region-------rounded corners for many things like lists and inputs-------*/
+.scm-editor,
+.monaco-button,
+.monaco-select-box,
+.monaco-inputbox,
+.monaco-hover,
+.monaco-editor .find-widget,
+.suggest-input-container,
+.suggest-details,
+.editor-widget.suggest-widget,
+.chat-input-container,
+.notification-fade-in-done,
+.notification-toast,
+.notification-toast>.notifications-list-container,
+.notification-toast>.notifications-list-container>.monaco-list,
+.notifications-center,
+.monaco-menu .action-item a.focused,
+.monaco-menu .action-item a:hover,
+.part.sidebar .pane-header,
+.part.auxiliarybar .pane-header,
+.monaco-list.mouse-support,
+.monaco-list-row.focused,
+.monaco-list-row.selected,
+.monaco-list-row {
+    border-radius: 6px !important;
+    /* margin-right: 4px !important; */
+    /* max-width: calc(100% - 4px) !important; */
+}
+
+.monaco-button-dropdown .monaco-button-dropdown-separator {
+    display: none !important;
+}
+
+/* #endregion-------rounded corners for lists and inputs-------*/
+
+/* #endregion-------little tweaks-------*/
+
+/* #region-------animations-------*/
+
+/* settings icon animation in the activity bar */
+.codicon-settings-view-bar-icon {
+    transition: transform 250ms cubic-bezier(1, 1, 1, 1);
+
+    &.codicon-settings-view-bar-icon:hover {
+        transform: rotate(90deg);
+        background-color: transparent !important;
+    }
+}
+
+/* gutter active line number animation */
+.line-numbers.active-line-number,
+.current-line.current-line-margin .line-numbers {
+    transform: scale(1.25) translateX(-3px);
+    animation: .2s ease-out scaleSize;
+}
+
+@keyframes scaleSize {
+    0% {
+        transform: scale(.75)
+    }
+
+    100% {
+        transform: scale(1.35) translateX(-3px);
+    }
+}
+
+/* #endregion-------animations-------*/
 
 /* #region-------small fixes and optimizations-------*/
 
-/* #region-------windsurf-------*/
+/* #region-------vscode-------*/
 
-/* chat corners in the auxiliarybar */
-iframe#windsurf\.cascadePanel {
-    border-radius: var(--border-radius) !important;
+.monaco-split-view2.horizontal>.monaco-scrollable-element>.split-view-container>.split-view-view.visible:last-of-type .editor-group-container {
+    width: var(--editor-width);
 }
 
-/* widsurf settings page */
-#workbench\.parts\.editor .content .monaco-scrollable-element .split-view-container .editor-container .windsurf-settings-editor {
-    padding-left: calc(var(--spacing) * 4) !important;
+body .monaco-workbench .part.editor .content>.grid-view-container>.monaco-grid-view>.monaco-grid-branch-node .monaco-split-view2.horizontal>.monaco-scrollable-element>.split-view-container>.split-view-view.visible:has(~ .split-view-view.visible) {
 
-    .windsurf-settings-sidebar .windsurf-settings-nav-item {
-        &.selected {
+    .editor-group-container {
+        width: unset;
+        border-radius: var(--border-radius);
+
+        .monaco-diff-editor .editor.modified .sticky-widget:not(.peek),
+        .editor-instance>.monaco-editor .sticky-widget:not(.peek) {
+            width: calc(var(--editor-width) - 14px) !important;
+        }
+
+        .monaco-diff-editor .editor.modified .decorationsOverviewRuler,
+        .monaco-diff-editor .editor.modified .scrollbar.vertical,
+        .editor-instance>.monaco-editor .decorationsOverviewRuler,
+        .editor-instance>.monaco-editor .editor-scrollable .scrollbar.vertical {
+            left: unset !important;
+        }
+
+        .monaco-editor .minimap {
+            left: unset !important;
+            right: calc(var(--margin-horizontal) - 6px - 1px) !important;
+        }
+
+        .monaco-diff-editor .diffOverview {
+            left: unset !important;
+            right: 0px !important;
+            background-color: var(--vscode-editor-background) !important;
+        }
+
+        .zone-widget {
+            width: calc(100% - 15px) !important;
+
+            .scrollbar.vertical,
+            .decorationsOverviewRuler {
+                left: unset !important;
+                right: 0px !important;
+            }
+
+            .ref-tree.inline {
+                width: 100% !important;
+            }
+        }
+    }
+}
+
+
+/* #endregion-------vscode-------*/
+
+/* #region-------windsurf-------*/
+
+body .monaco-workbench.Windsurf {
+
+    /* chat corners in the auxiliarybar */
+    iframe#windsurf\.cascadePanel {
+        border-radius: var(--border-radius) !important;
+    }
+
+    /* widsurf settings page */
+    #workbench\.parts\.editor .content .monaco-scrollable-element .split-view-container .editor-container .windsurf-settings-editor {
+        padding-left: calc(var(--spacing) * 4) !important;
+
+        .windsurf-settings-sidebar .windsurf-settings-nav-item {
+            &.selected {
+                border-radius: 7px !important;
+                background-color: rgb(from var(--accent-color) r g b / 0.22) !important;
+                border: 1px solid rgb(from var(--accent-color) r g b / 0.0) !important;
+                color: var(--accent-color) !important;
+                box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
+                    rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+            }
+
+            &:hover:not(.selected) {
+                background: none !important;
+                color: var(--accent-color) !important;
+            }
+        }
+    }
+
+    /* panel tabs in widsurf */
+    .monaco-workbench .pane-composite-part>.title>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item:hover .active-item-indicator:before {
+        display: none !important;
+    }
+
+    /* search icon in titlebar */
+    #workbench\.parts\.titlebar>div>div.titlebar-center>div.search-container {
+        display: none !important;
+    }
+
+    /*  */
+    .part.editor>.content .split-view-view.visible:last-of-type .editor-group-container {
+        width: 100% !important;
+    }
+}
+
+/* #endregion-------windsurf-------*/
+
+/* #region-------cursor-------*/
+
+body .monaco-workbench.Cursor {
+
+    /* chat corners in the auxiliarybar */
+    .part.auxiliarybar.basepanel.pane-composite-part .content .composite.auxiliarybar .monaco-pane-view .pane-body .composer-bar,
+    #workbench\.parts\.auxiliarybar>div.composite.has-composite-bar.header-or-footer.header,
+    #workbench\.parts\.auxiliarybar>div.composite.title.has-composite-bar {
+        border-radius: var(--border-radius) !important;
+    }
+
+    /* chat name fix */
+    #workbench\.parts\.auxiliarybar>div.composite.has-composite-bar.header-or-footer.header>div.composite-bar-container>div>div>ul>li,
+    #workbench\.parts\.auxiliarybar>div.composite.title.has-composite-bar>div.composite-bar-container>div>div>ul>li {
+        border-radius: 6px;
+        background-color: rgb(from var(--accent-color) r g b / 0.22);
+        box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
+            rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+
+        .action-label::after {
+            display: none !important;
+        }
+    }
+
+    /* cursor settings page */
+    #workbench\.parts\.editor .content .monaco-scrollable-element .split-view-container .editor-container .editor-instance.aichat-pane .aichat-container {
+        margin-top: -14px !important;
+
+        .settings-menu-item:not([style*="background-color: transparent"]) {
             border-radius: 7px !important;
             background-color: rgb(from var(--accent-color) r g b / 0.22) !important;
             border: 1px solid rgb(from var(--accent-color) r g b / 0.0) !important;
@@ -711,106 +925,60 @@ iframe#windsurf\.cascadePanel {
                 rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
         }
 
-        &:hover:not(.selected) {
-            background: none !important;
+        :hover {
             color: var(--accent-color) !important;
+            background: transparent !important;
         }
     }
-}
 
-/* panel tabs in widsurf */
-.monaco-workbench .pane-composite-part>.title>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item:hover .active-item-indicator:before {
-    display: none !important;
-}
-
-/* search icon in titlebar */
-#workbench\.parts\.titlebar>div>div.titlebar-center>div.search-container {
-    display: none !important;
-}
-
-/* #endregion-------windsurf-------*/
-
-/* #region-------cursor-------*/
-
-/* chat corners in the auxiliarybar */
-.part.auxiliarybar.basepanel.pane-composite-part .content .composite.auxiliarybar .monaco-pane-view .pane-body .composer-bar,
-#workbench\.parts\.auxiliarybar>div.composite.title.has-composite-bar {
-    border-radius: var(--border-radius) !important;
-}
-
-/* chat name fix */
-#workbench\.parts\.auxiliarybar>div.composite.title.has-composite-bar>div.composite-bar-container>div>div>ul>li {
-    border-radius: 6px;
-    background-color: rgb(from var(--accent-color) r g b / 0.22);
-    box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
-        rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
-
-    .action-label::after {
-        display: none !important;
-    }
-}
-
-/* cursor settings page */
-#workbench\.parts\.editor .content .monaco-scrollable-element .split-view-container .editor-container .editor-instance.aichat-pane .aichat-container {
-    margin-top: -14px !important;
-
-    .settings-menu-item:not([style*="background-color: transparent"]) {
+    /* the menu that cursor added in the activitybar */
+    #workbench\.parts\.sidebar>div>div>div:nth-child(1)>div>div:nth-child(2) {
         border-radius: 7px !important;
-        background-color: rgb(from var(--accent-color) r g b / 0.22) !important;
-        border: 1px solid rgb(from var(--accent-color) r g b / 0.0) !important;
-        color: var(--accent-color) !important;
-        box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
-            rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
-    }
+        border-bottom: 1px solid #474747 !important;
 
-    :hover {
-        color: var(--accent-color) !important;
-        background: transparent !important;
-    }
-}
-
-/* the menu that cursor added in the activitybar */
-#workbench\.parts\.sidebar>div>div>div:nth-child(1)>div>div:nth-child(2) {
-    border-radius: 7px !important;
-    border-bottom: 1px solid #474747 !important;
-
-    .sidebar-list-item:hover,
-    .sidebar-list-item.sidebar-list-item-selected {
-        background-color: rgb(from var(--accent-color) r g b / 0.11) !important;
-        border-radius: 6px !important;
-        box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
-            rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
-
-    }
-
-}
-
-/* adjust activitybar top tabs hightlight */
-#workbench\.parts\.sidebar>div>div>div:nth-child(1)>div>div:nth-child(1) {
-    justify-content: space-evenly !important;
-
-    .sidebar2-item-icon-anysphere {
-        &.sidebar-list-item-selected {
-            width: 30px !important;
-            height: 30px !important;
-            border-radius: 6px;
-            background-color: rgb(from var(--accent-color) r g b / 0.22);
+        .sidebar-list-item:hover,
+        .sidebar-list-item.sidebar-list-item-selected {
+            background-color: rgb(from var(--accent-color) r g b / 0.11) !important;
+            border-radius: 6px !important;
             box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
                 rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+
         }
 
-        &:hover:not(.sidebar-list-item-selected) {
-            background: none !important;
-        }
+    }
 
-        .codicon {
-            font-size: 20px !important;
-        }
+    /* adjust activitybar top tabs hightlight */
+    #workbench\.parts\.sidebar>div>div>div:nth-child(1)>div>div:nth-child(1) {
+        justify-content: space-evenly !important;
 
-        .codicon.codicon-chevron-up,
-        .codicon.codicon-chevron-down {
-            position: absolute;
+        .sidebar2-item-icon-anysphere {
+            &.sidebar-list-item-selected {
+                width: 30px !important;
+                height: 30px !important;
+                border-radius: 6px;
+                background-color: rgb(from var(--accent-color) r g b / 0.22);
+                box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 25px -5px,
+                    rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+            }
+
+            &:hover:not(.sidebar-list-item-selected) {
+                background: none !important;
+            }
+
+            .codicon {
+                font-size: 20px !important;
+            }
+
+            .codicon.codicon-chevron-up,
+            .codicon.codicon-chevron-down {
+                position: absolute;
+            }
         }
+    }
+
+    /*  */
+    .part.editor>.content .split-view-view.visible:last-of-type .editor-group-container {
+        width: 100% !important;
     }
 }
 
@@ -818,9 +986,73 @@ iframe#windsurf\.cascadePanel {
 
 /* #endregion-------small fixes and optimizations-------*/
 
+/* --------------------------------- */
+/* --------------------------------- */
+/* --------------------------------- */
+/* --------------------------------- */
+/* --------------------------------- */
 
-/* --------------------------------- */
-/* --------------------------------- */
-/* --------------------------------- */
-/* --------------------------------- */
-/* --------------------------------- */
+/* indicator on the left of a list row */
+asdfbody .monaco-workbench {
+
+    .monaco-list-rows .monaco-list-row.selected::before,
+    .monaco-list-rows .monaco-list-row.focused::before {
+        position: absolute;
+        content: '';
+        top: 20% !important;
+        height: 60% !important;
+        width: 3px !important;
+        border-radius: 100px !important;
+        background-color: var(--accent-color) !important;
+        border: none !important;
+    }
+
+    /* ------------------------------ */
+    /* ------------------------------ */
+    /* ------------------------------ */
+
+    /* fixes for the indicator list rows highlight */
+    .notifications-center .monaco-list-rows .monaco-list-row::before,
+    .notifications-toasts .monaco-list-rows .monaco-list-row::before {
+        top: 0% !important;
+        height: 100% !important;
+    }
+
+    .part.panel .pane-body .monaco-list-rows .monaco-list-row::before,
+    .part.auxiliarybar .pane-body .monaco-list-rows .monaco-list-row::before,
+    .part.sidebar .pane-body .monaco-list-rows .monaco-list-row::before {
+        left: 7px !important;
+        width: 3.5px !important;
+    }
+
+    .quick-input-widget .quick-input-list .monaco-list-rows .monaco-list-row::before {
+        left: 4px !important;
+    }
+
+    .settings-editor .settings-body {
+        .settings-toc-container .settings-toc-wrapper .monaco-list-rows .monaco-list-row::before {
+            left: 7px !important;
+            width: 3.5px !important;
+        }
+
+        .settings-tree-container .monaco-list-rows .monaco-list-row::before {
+            display: none !important;
+        }
+    }
+
+    .editor-widget.suggest-widget .monaco-list-rows .monaco-list-row {
+        padding-left: 10px !important;
+
+        &::before {
+            left: 6px !important;
+        }
+    }
+
+    .extension-editor .subcontent.feature-contributions .features-list-container>.features-list-wrapper .monaco-list-row.extension-feature-list-item::before {
+        left: 4px !important;
+    }
+
+    .part.editor .content .editor-container .editor-instance .keybindings-editor .keybindings-table-container .monaco-list-row::before {
+        display: none !important;
+    }
+}

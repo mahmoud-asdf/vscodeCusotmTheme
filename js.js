@@ -1,3 +1,15 @@
+// Get the app title
+document.addEventListener('DOMContentLoaded', function setTitleAttr() {
+    if (document.title)
+        document.querySelector('.monaco-workbench').classList.add(document.title);
+    else
+        setTimeout(setTitleAttr, 100);
+});
+
+// ////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////
+
 // Blur behind the command palette
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -144,143 +156,3 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 });
-/////////////////////////////////////////////
-/////////////////////////////////////////////
-/////////////////////////////////////////////
-
-
-
-// Observer to track minimap width and update CSS variable
-(function () {
-    let debounceTimeout = null;
-    let resizeObserver = null; // Initialize resizeObserver
-    let mutationObserver = null; // Initialize mutationObserver
-    let observedEditorElement = null; // Keep track of the element observed by ResizeObserver
-
-    // Debounce function to limit how often updateMinimapWidthVariable is called
-    function debounce(func, delay) {
-        return function (...args) {
-            clearTimeout(debounceTimeout);
-            debounceTimeout = setTimeout(() => {
-                func.apply(this, args);
-            }, delay);
-        };
-    }
-
-    // Function to create and update the CSS variable
-    function updateMinimapWidthVariable() {
-        // Selector remains fragile as per constraint 1
-        const minimapSelector = '.part.editor .content .split-view-view.visible:last-of-type .monaco-editor .minimap';
-        const minimapElement = document.querySelector(minimapSelector);
-
-        if (minimapElement) {
-            const minimapWidth = window.getComputedStyle(minimapElement).width;
-            // Only update if the width has actually changed or is initially set
-            const currentWidth = document.documentElement.style.getPropertyValue('--minimap-width');
-            if (minimapWidth && currentWidth !== minimapWidth) {
-                document.documentElement.style.setProperty('--minimap-width', minimapWidth);
-                // console.log('Minimap width updated to:', minimapWidth); // Optional: uncomment for debugging
-                updateMinimapCSS(minimapWidth);
-            }
-        }
-        // No need for 'else' console log here, MutationObserver handles finding it.
-    }
-
-    // Debounced version for frequent calls (like resize/mutation)
-    const debouncedUpdateMinimapWidth = debounce(updateMinimapWidthVariable, 150); // 150ms delay
-
-    // Function to add or update the minimap positioning CSS (unchanged logic)
-    function updateMinimapCSS(minimapWidth) {
-        let styleElement = document.getElementById('minimap-custom-style');
-        if (!styleElement) {
-            styleElement = document.createElement('style');
-            styleElement.id = 'minimap-custom-style';
-            document.head.appendChild(styleElement);
-        }
-        // CSS rule remains the same, using !important and hardcoded values as per constraints 3 & 4
-        styleElement.textContent = `
-        /* Target the specific visible editor pane's minimap */
-        .part.editor .content .split-view-view.visible:last-of-type .monaco-editor .minimap {
-          /* Positioning calculation relies on --spacing and hardcoded values as per constraints 4 & 5 */
-          left: calc(100% - var(--spacing) * 4 - ${minimapWidth} - 13px) !important;
-        }
-      `;
-    }
-
-    // --- Fix for Problem 2 (Performance - ResizeObserver) ---
-    // Initialize ResizeObserver with the debounced callback
-    resizeObserver = new ResizeObserver(entries => {
-        // Debounce the update function call
-        debouncedUpdateMinimapWidth();
-    });
-
-    // --- Fix for Problem 6 (Polling) & Improved Problem 2 (MutationObserver Performance) ---
-    // Function to find and observe the editor element
-    function findAndObserveEditor() {
-        // Attempt to find the editor container - selectors kept as original per constraint 1
-        const editorSelector = '.editor-container, .monaco-editor, .editor'; // Combine selectors
-        const editorElement = document.querySelector(editorSelector); // Find *any* editor container for resize
-
-        if (editorElement && editorElement !== observedEditorElement) {
-            // If we were observing a previous element, stop observing it
-            if (observedEditorElement) {
-                resizeObserver.unobserve(observedEditorElement);
-            }
-            // Observe the newly found editor element
-            resizeObserver.observe(editorElement);
-            observedEditorElement = editorElement; // Track the currently observed element
-            // console.log('Editor element found/changed, observing for resize:', editorElement); // Optional debug log
-            // Initial update on finding the editor might be needed if minimap is already there
-            debouncedUpdateMinimapWidth();
-        }
-        // No explicit 'else' needed, MutationObserver will re-trigger this check if DOM changes
-    }
-
-
-    // Set up a mutation observer to handle dynamic DOM changes more efficiently
-    mutationObserver = new MutationObserver((mutations) => {
-        let potentiallyAffected = false;
-        for (let mutation of mutations) {
-            // Check if nodes were added/removed, or if attributes relevant to visibility/layout changed
-            // This is still broad, but avoids triggering on every minor text change etc.
-            // We check for added nodes because the editor or minimap might appear dynamically.
-            if (mutation.type === 'childList' && (mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0)) {
-                potentiallyAffected = true;
-                break; // No need to check other mutations if one relevant one is found
-            }
-            // Optionally check for attribute changes that might affect layout/visibility,
-            // but be specific to avoid excessive triggering. Example:
-            // if (mutation.type === 'attributes' && (mutation.attributeName === 'class' || mutation.attributeName === 'style')) {
-            //    potentiallyAffected = true;
-            //    break;
-            // }
-        }
-
-        if (potentiallyAffected) {
-            // Check if the editor we are observing still exists or if we need to find a new one
-            findAndObserveEditor();
-            // Check/Update minimap width (debounced)
-            debouncedUpdateMinimapWidth();
-        }
-    });
-
-    // --- Improved Targeting for MutationObserver ---
-    // Observe the body initially, as we don't know where the editor might appear.
-    // While still broad, the *callback* now does less work unless necessary.
-    // Constraint 7 means we don't worry about global scope issues of the injected style/variable.
-    mutationObserver.observe(document.body, {
-        childList: true, // Detect when elements are added/removed
-        subtree: true,   // Watch the entire body subtree
-        // Avoid observing attributes/characterData unless absolutely necessary to reduce noise
-        // attributes: true, // Consider adding if class/style changes break things and need tracking
-        // attributeFilter: ['class', 'style'] // Example filter
-    });
-
-    // Initial attempt to find editor and setup
-    findAndObserveEditor();
-    // Perform an initial check in case the minimap is already present
-    updateMinimapWidthVariable(); // Run once immediately, non-debounced
-
-    console.log('Minimap width tracking initialized (with debouncing)');
-
-})();
